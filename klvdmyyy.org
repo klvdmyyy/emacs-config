@@ -50,7 +50,7 @@ Setup development directories
       (dired (concat "~/" development-folder-name))))
 #+end_src
 
-* Setup Emacs built-in things
+* Emacs default settings
 
 ** User information
 
@@ -84,6 +84,17 @@ Custom UI/UX
   (setq display-time-24hr-format t)
   (display-time-mode t)
   (size-indication-mode t)
+#+end_src
+
+Spaces-no-tabs
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4)
+#+end_src
+
+Only require to type 'y' or 'n' instead of 'yes' or 'no' when prompted
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
 ** Remove backup/autosave files
@@ -123,4 +134,26 @@ Custom UI/UX
     (straight-use-package-by-default t)
     (straight-register-package 'org)
     (straight-register-package 'org-contrib))
+#+end_src
+
+* Visual
+
+Frame/Cursor properties
+#+begin_src emacs-lisp
+  (setq klvdmyyy/cursor-type 'box)
+  (setq klvdmyyy/cursor-color "DarkOrange")
+
+  (setq-default frame-background-mode 'dark)
+  (set-mouse-color "white")
+
+  ;; Only show cursor in active window
+  (setq-default cursor-in-non-selected-windows nil)
+
+  ;; Default frame properties frame position, color, etc
+  (setq default-frame-alist
+        `((cursor-type . ,klvdmyyy/cursor-type)
+          (height . 60) (width . 100)
+          (cursor-color . ,klvdmyyy/cursor-color)
+          (internal-border-width . 24)
+          (mouse-color . "white")))
 #+end_src
