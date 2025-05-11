@@ -1,1 +1,0 @@
-c:/Users/kleme/AppData/Roaming/.emacs.d/straight/repos/straight.el/straight.el
