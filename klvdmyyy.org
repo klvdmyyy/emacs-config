@@ -28,6 +28,28 @@ Roadmap of the my configuration
     (find-file config-file))
 #+end_src
 
+Check current OS for some variables
+#+begin_src emacs-lisp
+  (defun system-is-linux ()
+    (string-equal system-type "gnu/linux"))
+  (defun system-is-windows ()
+    (string-equal system-type "windows-nt"))
+#+end_src
+
+Setup development directories
+#+begin_src emacs-lisp
+  (setq development-folder-name "development")
+
+  (when (system-is-windows)
+    (defun klvdmyyy/development ()
+      (interactive)
+      (dired (concat "D:\\" development-folder-name))))
+  (when (system-is-linux)
+    (defun klvdmyyy/development ()
+      (interactive)
+      (dired (concat "~/" development-folder-name))))
+#+end_src
+
 * Setup Emacs built-in things
 
 ** User information
