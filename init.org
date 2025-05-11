@@ -1,0 +1,58 @@
+#+TITLE: My Org-Babel based Emacs configuration
+#+LANGUAGE: en
+#+OPTIONS: H:5 toc:nil creator:nil email:nil author:t timestamp:t tags:nil tex:verbatim
+#+PROPERTY: header-args :results silent :noweb no-export
+
+This is my Emacs configuration file that is loaded with =org-babel-load-file= in the Emacs init file.
+
+* Preparing
+
+#+begin_src emacs-lisp
+  (defun klvdmyyy/open-config ()
+    (interactive)
+    (find-file config-file))
+#+end_src
+
+* Setup Emacs built-in things
+
+** User information
+
+#+begin_src emacs-lisp
+  (setq user-full-name "Klementiev Dmitry")
+  (setq user-email-address "klementievd08@yandex.ru")
+#+end_src
+
+** UI/UX
+
+Simplify Emacs built-in UI
+#+begin_src emacs-lisp
+  (setq frame-title-format "klvdmyyy's GNU Emacs: %b")
+  (setq inhibit-splash-screen t)
+  (setq ingibit-startup-message t)
+  (tooltip-mode -1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (blink-cursor-mode -1)
+  (setq use-dialog-box nil)
+  (setq redisplay-dont-pause t)
+  (setq ring-bell-function 'ignore) ; TODO: Custom ring-bell function
+#+end_src
+
+Custom UI/UX
+#+begin_src emacs-lisp
+  (set-frame-font "JetBrains Mono 12" nil t)
+  (setq word-wrap t)
+  (global-visual-line-mode t)
+  (setq display-time-24hr-format t)
+  (display-time-mode t)
+  (size-indication-mode t)
+#+end_src
+
+** Remove backup/autosave files
+
+#+begin_src emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq auto-save-list-file-name nil)
+#+end_src
