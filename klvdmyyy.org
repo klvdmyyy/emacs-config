@@ -14,6 +14,9 @@ Roadmap of the my configuration
   - Read [[https://gist.github.com/noah-evans/745c5dabf92fa62078c8d7a6952d790d][github gist]]
   - Read about [[https://github.com/abcdw/rde][rde]]
 - [ ] Migrate from Archlinux to Guix/Nix as main OS
+- [ ] Maybe use Emacs as window manager
+  - [[https://github.com/emacs-exwm/exwm][for x11]]
+  - [[https://framagit.org/nll/ewx/-/tree/master][for wayland]]
 
 * Preparing
 
