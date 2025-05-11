@@ -5,9 +5,20 @@
 
 This is my Emacs configuration file that is loaded with =org-babel-load-file= in the Emacs init file.
 
+* todolist
+
+Roadmap of the my configuration
+
+- [ ] Maybe use git submodules for site-packages
+- [ ] Maybe migrate to Guix (read about RDE)
+  - Read [[https://gist.github.com/noah-evans/745c5dabf92fa62078c8d7a6952d790d][github gist]]
+  - Read about [[https://github.com/abcdw/rde][rde]]
+
 * Preparing
 
 #+begin_src emacs-lisp
+  (load-theme 'modus-vivendi) ; Load default dark theme (light version: modus-operandi)
+  
   (defun klvdmyyy/open-config ()
     (interactive)
     (find-file config-file))
