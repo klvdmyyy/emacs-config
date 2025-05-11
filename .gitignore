@@ -3,3 +3,5 @@ org-persist
 url
 eshell
 *~
+straight/
+!straight/versions/default.el

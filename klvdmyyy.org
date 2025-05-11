@@ -13,6 +13,7 @@ Roadmap of the my configuration
 - [ ] Maybe migrate to Guix (read about RDE)
   - Read [[https://gist.github.com/noah-evans/745c5dabf92fa62078c8d7a6952d790d][github gist]]
   - Read about [[https://github.com/abcdw/rde][rde]]
+- [ ] Migrate from Archlinux to Guix/Nix as main OS
 
 * Preparing
 
@@ -66,4 +67,35 @@ Custom UI/UX
   (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq auto-save-list-file-name nil)
+#+end_src
+
+
+* Package management
+
+#+begin_src emacs-lisp
+  (defvar bootstrap-version)
+  (setq straight-repository-branch "develop")
+  (let ((bootstrap-file
+         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+        (bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+  	(url-retrieve-synchronously
+  	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+  	 'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq use-package-always-ensure nil
+        use-package-verbose 'debug)
+
+  (use-package straight
+    :custom
+    (straight-host-usernames '((github . "klvdmyyy")))
+    (straight-use-package-by-default t)
+    (straight-register-package 'org)
+    (straight-register-package 'org-contrib))
 #+end_src

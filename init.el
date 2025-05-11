@@ -8,6 +8,15 @@
 
 ;;; Code:
 
+(require 'cl)                           ; for remove-if
+
+;; Set gc really large, during load, after that we are going to use gcmh
+;; See: https://akrl.sdf.org/#orgc15a10d has the same as I had for years
+(setq gc-cons-threshold (* 16 1024 1024 1024))
+
+;; Assert native compilation is there
+(setq comp-deferred-compilation t)
+
 (setq config-file (expand-file-name "klvdmyyy.org" user-emacs-directory))
 
 (org-babel-load-file config-file)
