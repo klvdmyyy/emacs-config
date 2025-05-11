@@ -1,7 +1,13 @@
+# Emacs things
 auto-save-list
 org-persist
 url
 eshell
 *~
+
+# Straight ignore
 straight/
 !straight/versions/default.el
+
+# Ignore config output file
+klvdmyyy.el
