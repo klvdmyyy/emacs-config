@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(setq config-file (expand-file-name "init.org" user-emacs-directory))
+(setq config-file (expand-file-name "klvdmyyy.org" user-emacs-directory))
 
 (org-babel-load-file config-file)
 
