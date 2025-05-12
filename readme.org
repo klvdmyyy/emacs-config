@@ -251,18 +251,15 @@ Secondary I need to quickly open my development folder. TODO: I should rework th
 
 Just improve the look of org-mode
 #+begin_src emacs-lisp
+  ;; Deprecated. Don't use
   (defun klvdmyyy/org-mode-setup ()
     (org-indent-mode)
-    (variable-pitch-mode 1)
+    ;; (variable-pitch-mode 1) ; Provide UI bugs
     (auto-fill-mode 0)
     (visual-line-mode 1)
     (setq evil-auto-indent nil))
 
-  (use-package org
-    :hook (org-mode . klvdmyyy/org-mode-setup)
-    :config
-    (setq org-ellipsis " ▾"
-          org-hide-emphasis-markers t))
+  (add-hook 'org-mode-hook 'org-indent-mode)
 
   (use-package org-bullets
     :after org
@@ -284,154 +281,6 @@ Just improve the look of org-mode
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
     (set-face-attribute (car face) nil :font "JetBrains Mono" :height (cdr face)))
-
-  ;; Make sure org-indent face is available
-  (require 'org-indent)
-
-  ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
 #+end_src
 
-* [[https://systemcrafters.net/emacs-from-scratch/organize-your-life-with-org-mode/][Organize your life with Org-mode]] (All code from it is non-exportable)
-
-** The Agenda
-
-Run =org-agenda= to see possible agenda views
-#+begin_src emacs-lisp :exports none
-  (setq org-directory "~/Projects/Code/emacs-from-scratch/OrgFiles")
-  (setq org-agenda-files '("Tasks.org" "Birthdays.org" "Habits.org"))
-
-  ;; If you only want to see the agenda for today
-  ;; (setq org-agenda-span 'day)
-
-  (setq org-agenda-start-with-log-mode t)
-  (setq org-log-done 'time)
-  (setq org-log-into-drawer t)
-#+end_src
-
-** Scheduling and Deadlines
-
-- =org-schedule=
-- =org-deadline=
-- =org-time-stamp=
-- [[https://orgmode.org/manual/Repeated-tasks.html#Repeated-tasks][Repeated Tasks]]
-
-** Custom TODO states and Agendas
-
-#+begin_src emacs-lisp :exports none
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-          (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
-#+end_src
-
-[[https://orgmode.org/manual/Custom-Agenda-Views.html#Custom-Agenda-Views][Org Mode Manual: Custom Agenda Views]]
-
-#+begin_src emacs-lisp :exports none
-  ;; Configure custom agenda views
-  (setq org-agenda-custom-commands
-        '(("d" "Dashboard"
-           ((agenda "" ((org-deadline-warning-days 7)))
-            (todo "NEXT"
-                  ((org-agenda-overriding-header "Next Tasks")))
-            (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
-
-          ("n" "Next Tasks"
-           ((todo "NEXT"
-                  ((org-agenda-overriding-header "Next Tasks")))))
-
-
-          ("W" "Work Tasks" tags-todo "+work")
-
-          ;; Low-effort next actions
-          ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-           ((org-agenda-overriding-header "Low Effort Tasks")
-            (org-agenda-max-todos 20)
-            (org-agenda-files org-agenda-files)))
-
-          ("w" "Workflow Status"
-           ((todo "WAIT"
-                  ((org-agenda-overriding-header "Waiting on External")
-                   (org-agenda-files org-agenda-files)))
-            (todo "REVIEW"
-                  ((org-agenda-overriding-header "In Review")
-                   (org-agenda-files org-agenda-files)))
-            (todo "PLAN"
-                  ((org-agenda-overriding-header "In Planning")
-                   (org-agenda-todo-list-sublevels nil)
-                   (org-agenda-files org-agenda-files)))
-            (todo "BACKLOG"
-                  ((org-agenda-overriding-header "Project Backlog")
-                   (org-agenda-todo-list-sublevels nil)
-                   (org-agenda-files org-agenda-files)))
-            (todo "READY"
-                  ((org-agenda-overriding-header "Ready for Work")
-                   (org-agenda-files org-agenda-files)))
-            (todo "ACTIVE"
-                  ((org-agenda-overriding-header "Active Projects")
-                   (org-agenda-files org-agenda-files)))
-            (todo "COMPLETED"
-                  ((org-agenda-overriding-header "Completed Projects")
-                   (org-agenda-files org-agenda-files)))
-            (todo "CANC"
-                  ((org-agenda-overriding-header "Cancelled Projects")
-                   (org-agenda-files org-agenda-files)))))))
-#+end_src
-
-** Refiling
-
-#+begin_src emacs-lisp :exports none
-  (setq org-refile-targets
-        '(("Archive.org" :maxlevel . 1)))
-
-  ;; Save Org buffers after refiling!
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
-#+end_src
-
-** Capture templates
-
-- Tasks
-- Meeting notes
-- Table entries
-- Journal entries
-
-Not exported code block:
-#+begin_src emacs-lisp :exports none
-  (defun dw/read-file-as-string (path)
-    (with-temp-buffer
-      (insert-file-contents path)
-      (buffer-string)))
-
-  (setq org-capture-templates
-        `(("t" "Tasks / Projects")
-          ("tt" "Task" entry (file+olp "~/Projects/Code/emacs-from-scratch/OrgFiles/Tasks.org" "Inbox")
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-          ("ts" "Clocked Entry Subtask" entry (clock)
-           "* TODO %?\n  %U\n  %a\n  %i" :empty-lines 1)
-
-          ("j" "Journal Entries")
-          ("jj" "Journal" entry
-           (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-           "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
-           ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
-           :clock-in :clock-resume
-           :empty-lines 1)
-          ("jm" "Meeting" entry
-           (file+olp+datetree "~/Projects/Code/emacs-from-scratch/OrgFiles/Journal.org")
-           "* %<%I:%M %p> - %a :meetings:\n\n%?\n\n"
-           :clock-in :clock-resume
-           :empty-lines 1)
-
-          ("w" "Workflows")
-          ("we" "Checking Email" entry (file+olp+datetree ,(dw/get-todays-journal-file-name))
-           "* Checking Email :email:\n\n%?" :clock-in :clock-resume :empty-lines 1)
-
-          ("m" "Metrics Capture")
-          ("mw" "Weight" table-line (file+headline "~/Projects/Code/emacs-from-scratch/OrgFiles/Metrics.org" "Weight")
-           "| %U | %^{Weight} | %^{Notes} |" :kill-buffer t)))
-#+end_src
+* TODO [[https://systemcrafters.net/emacs-from-scratch/organize-your-life-with-org-mode/][Organize your life with Org-mode]]
