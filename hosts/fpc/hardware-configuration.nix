@@ -3,6 +3,11 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
+let
+  espDevice = "/dev/disk/by-label/ESP";
+  mainDevice = "/dev/disk/by-label/MAIN";
+  secondaryDevice = "/dev/disk/by-label/SECONDARY";
+in
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
@@ -10,26 +15,80 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
-
-  # File system
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/ROOT";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-label/HOME";
-      fsType = "ext4";
-    };
+  boot.supportedFilesystems = ["btrfs"]; # Enable BTRFS support for boot settings
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-label/ESP";
+    {
+      device = espDevice;
       fsType = "vfat";
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-label/SWAP"; }
-    ];
+  fileSystems."/data" =
+    {
+      device = secondaryDevice;
+      fsType = "btrfs";
+      options = ["subvol=@data" "compress=zstd" "noatime"];
+    };
+
+  fileSystems."/snapshots" =
+    {
+      device = secondaryDevice;
+      fsType = "btrfs";
+      options = ["subvol=@snapshots" "compress=zstd" "noatime"];
+    };
+  
+  fileSystems."/" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@" "compress=zstd" "noatime"];
+    };
+
+  fileSystems."/boot" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@boot" "compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+  fileSystems."/nix/store" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@nixstore" "compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/log" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@varlog" "compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/lib" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@varlib" "compress=zstd" "noatime"];
+    };
+
+  fileSystems."/var/nix" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@varnix" "compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+  fileSystems."/home" =
+    {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["subvol=@home" "compress=zstd" "noatime"];
+    };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
