@@ -24,10 +24,11 @@ What about my main OS?
   - Btrfs
   
 Roadmap of this configuration
-- [ ] Full Golang support
-  - [ ] Go mode
+- [-] Full Golang support
+  - [X] Go mode
   - [ ] Treesitter
-  - [ ] LSP
+  - [X] LSP
+  - [X] Completion
   - [ ] Kafka
   - [ ] Docker
   - [ ] Kubernetes
