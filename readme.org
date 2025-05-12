@@ -180,6 +180,14 @@ Make life easier if we have sudo, so we can just edit the files and be done with
 
 * Visual
 
+Setup custom theme. I use =monokai-pro-theme=
+#+begin_src emacs-lisp
+  (use-package monokai-pro-theme
+    :ensure t
+    :config
+    (load-theme 'monokai-pro t))
+#+end_src
+
 Setup frame/cursor properties
 #+begin_src emacs-lisp
   (setq klvdmyyy/cursor-type 'box)
@@ -322,6 +330,13 @@ Just improve the look of org-mode
 #+end_src
 
 * Emacs can be best IDE (LSP, Completion, Flycheck and Debugging)
+
+- [X] LSP
+- [X] LSP UI
+- [X] Company and Company Box
+- [ ] Flycheck
+- [ ] Debugging (DAP)
+- [ ] Snippets (Yasnippets)
 
 Setup =lsp-mode= and =lsp-ui=
 #+begin_src emacs-lisp
