@@ -13,3 +13,5 @@ straight/
 *.el
 !init.el
 !early-init.el
+/.lsp-session-v1
+/server/

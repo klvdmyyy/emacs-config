@@ -24,6 +24,16 @@ What about my main OS?
   - Btrfs
   
 Roadmap of this configuration
+- [ ] Full Golang support
+  - [ ] Go mode
+  - [ ] Treesitter
+  - [ ] LSP
+  - [ ] Kafka
+  - [ ] Docker
+  - [ ] Kubernetes
+- [ ] Organizing
+  - [ ] Setup Org-mode
+  - [ ] Setup Org-agenda
 - [ ] Support my main languages
   - [ ] C
   - [ ] Zig
@@ -90,6 +100,9 @@ Load default theme and remove unnecessary UI/UX elements.
   (setq use-dialog-box nil)
   (setq redisplay-dont-pause t)
   (setq ring-bell-function 'ignore) ; TODO: Custom ring-bell function
+
+  ;; Enable electric pair mode
+  (add-hook 'text-mode-hook 'electric-pair-local-mode)
 #+end_src
 
 Setup font and time indication
@@ -235,6 +248,8 @@ OS specific functions. Sometimes I need to add OS-specific functionality and I s
     (string-equal system-type "windows-nt"))
   (defun system-is-linux ()
     (string-equal system-type "gnu/linux"))
+  (defun supported-system? ()
+    (or (system-is-windows) (system-is-linux)))
 #+end_src
 
 Firstly I need to quickly open config file
@@ -246,17 +261,17 @@ Firstly I need to quickly open config file
 
 Secondary I need to quickly open my development folder. TODO: I should rework this =)
 #+begin_src emacs-lisp
+  (when (system-is-windows)
+    (setq klvdmyyy/root-folder "D:\\"))
+  (when (system-is-linux)
+    (setq klvdmyyy/root-folder "~/"))
+    
   (setq klvdmyyy/development-folder "development")
 
-  (when (system-is-windows)
+  (when (supported-system?)
     (defun klvdmyyy/open-dev ()
       (interactive)
-      (dired (concat "D:\\" klvdmyyy/development-folder))))
-
-  (when (system-is-linux)
-    (defun klvdmyyy/open-dev ()
-      (interactive)
-      (dired (concat "~/" klvdmyyy/development-folder))))
+      (dired (concat klvdmyyy/root-folder klvdmyyy/development-folder))))
 #+end_src
 
 * TODO User information
@@ -290,3 +305,71 @@ Just improve the look of org-mode
 #+end_src
 
 * TODO [[https://systemcrafters.net/emacs-from-scratch/organize-your-life-with-org-mode/][Organize your life with Org-mode]]
+
+* Project working in Emacs
+
+** TODO Counsel (or Helm. Smth for fuzzy finding)
+
+** TODO Projectile (with fuzzy finding integration)
+
+** Magit - the best git client in your Emacs
+
+#+begin_src emacs-lisp
+  (use-package magit
+    :commands (magit-status magit-get-current-branch)
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+#+end_src
+
+* Emacs can be best IDE (LSP, Completion, Flycheck and Debugging)
+
+Setup =lsp-mode= and =lsp-ui=
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :commands lsp
+    :init
+    (setq lsp-keymap-prefix "C-c l"
+          lsp-headerline-breadcrumb-enable nil
+          lsp-enable-snippet t
+          lsp-go-analyses '((unusedparams . t)
+                            (staticcheck . t)))
+    :hook
+    (go-mode . lsp-deferred)
+    :config
+    (setq lsp-completion-provider :capf))
+
+  (use-package lsp-ui
+    :after lsp-mode
+    :commands lsp-ui-mode
+    :config
+    (setq lsp-ui-doc-enable t
+          lsp-ui-doc-position 'bottom
+          lsp-ui-sideline-show-hover t
+          lsp-ui-peek-always-show t))
+#+end_src
+
+Setup =company= and =company-box= for completion
+#+begin_src emacs-lisp
+  (use-package company
+    :hook (prog-mode . company-mode)
+    :config
+    (setq company-tooltip-align-annotations t
+          company-idle-delay 0.2
+          company-minimum-prefix-length 2)
+    (define-key company-active-map (kbd "C-j") #'company-select-next)
+    (define-key company-active-map (kbd "C-k") #'company-select-previous))
+
+  (use-package company-box
+    :after company
+    :hook (company-mode . company-box-mode))
+#+end_src
+
+** Go language
+
+Golang one of my main programming languages which I currently learning.
+
+#+begin_src emacs-lisp
+  ;; Firstly just install `go-mode' for specific filetype
+  (use-package go-mode
+    :mode ("\\.go?\\'" . go-mode))
+#+end_src
