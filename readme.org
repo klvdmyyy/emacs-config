@@ -104,7 +104,7 @@ Load default theme and remove unnecessary UI/UX elements.
   (setq ring-bell-function 'ignore) ; TODO: Custom ring-bell function
 
   ;; Enable electric pair mode
-  (add-hook 'text-mode-hook 'electric-pair-local-mode)
+  (add-hook 'prog-mode-hook 'electric-pair-local-mode)
 #+end_src
 
 Setup font and time indication
@@ -351,7 +351,8 @@ Setup =lsp-mode= and =lsp-ui=
           lsp-go-analyses '((unusedparams . t)
                             (staticcheck . t)))
     :hook
-    (go-mode . lsp-deferred)
+    ((go-mode . lsp-deferred)
+     (nix-mode . lsp-deferred))
     :config
     (setq lsp-completion-provider :capf))
 
@@ -398,5 +399,5 @@ Golang one of my main programming languages which I currently learning.
 Just adding =nix-mode=
 #+begin_src emacs-lisp
   (use-package nix-mode
-    :mode "\\.nix\\'")
+    :mode ("\\.nix?\\'" . nix-mode))
 #+end_src
