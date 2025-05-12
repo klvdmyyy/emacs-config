@@ -251,14 +251,6 @@ Secondary I need to quickly open my development folder. TODO: I should rework th
 
 Just improve the look of org-mode
 #+begin_src emacs-lisp
-  ;; Deprecated. Don't use
-  (defun klvdmyyy/org-mode-setup ()
-    (org-indent-mode)
-    ;; (variable-pitch-mode 1) ; Provide UI bugs
-    (auto-fill-mode 0)
-    (visual-line-mode 1)
-    (setq evil-auto-indent nil))
-
   (add-hook 'org-mode-hook 'org-indent-mode)
 
   (use-package org-bullets
