@@ -10,4 +10,6 @@ straight/
 !straight/versions/default.el
 
 # Ignore config output file
-klvdmyyy.el
+*.el
+!init.el
+!early-init.el

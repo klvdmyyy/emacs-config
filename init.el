@@ -17,7 +17,7 @@
 ;; Assert native compilation is there
 (setq comp-deferred-compilation t)
 
-(setq config-file (expand-file-name "klvdmyyy.org" user-emacs-directory))
+(setq config-file (expand-file-name "readme.org" user-emacs-directory))
 
 (org-babel-load-file config-file)
 
