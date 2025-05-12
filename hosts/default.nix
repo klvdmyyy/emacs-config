@@ -1,46 +1,37 @@
-{ lib, nixpkgs, home-manager, inputs, ... }:
-
-let
-  system = "x86_64-linux";
-
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = false;
-  };
-
-  lib = nixpkgs.lib;
-in
 {
-  fpc = lib.nixosSystem {
-    inherit system;
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosConfiguration = let
+    # shorten path
+    inherit (inputs.nixpkgs.lib) nixosSystem;
 
-    specialArgs = {
-      # Provide variables for configuration
-      inherit inputs system;
+    homeImports = import "${self}/home/profiles";
 
-      host = {
-        hostName = "ix";
-      };
+    mod = "${self}/system";
+
+    specialArgs = {inherit inputs self;};
+  in {
+    fpc = nixosSystem {
+      inherit specialArgs;
+      modules =
+        desktop ++ [
+          ./fpc
+
+          "${mod}/core/boot.nix"
+          "${mod}/programs/gamemode.nix"
+          "${mod}/programs/hyprland"
+          "${mod}/programs/games.nix"
+
+          {
+            home-manager = {
+              users.klvdmyyy.imports = homeImports."klvdmyyy@fpc";
+              extraSpecialArgs = specialArgs;
+              backupFileExtension = ".hm-backup";
+            };
+          }
+        ];
     };
-    modules = [
-      ./fpc
-      ./configuration.nix
-
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          host = {
-            hostName = "ix";
-          };
-        };
-        home-manager.users.klvdmyyy = {
-          imports = [
-            ./home.nix
-            ./fpc/home.nix
-          ];
-        };
-      }
-    ];
-  };
+  }
 }
