@@ -24,21 +24,35 @@ What about my main OS?
   - Btrfs
   
 Roadmap of this configuration
-- [ ] Support languages which I use
-  - [ ] C/C++
+- [ ] Support my main languages
+  - [ ] C
   - [ ] Zig
-  - [ ] Rust
   - [ ] Python
   - [ ] Golang
   - [ ] Emacs Lisp
   - [ ] Guile
   - [ ] Assembler
   - [ ] Linker script (=.ld= files)
-  - [ ] Toml
   - [ ] Yaml
   - [ ] Docker
   - [ ] Kubernetes
   - [ ] Bash
+  - [ ] JSON
+  - [ ] XML
+  - [ ] Makefile
+- [ ] Support secondary languages 
+  - [ ] C++
+  - [ ] Rust
+  - [ ] Toml for Cargo (Rust)
+  - [ ] Toml
+  - [ ] Perl
+  - [ ] Clojure
+  - [ ] Common Lisp
+  - [ ] Kotlin
+  - [ ] Java
+  - [ ] GLSL
+  - [ ] HLSL
+  - [ ] CMake
 - [ ] LSP
 - [ ] DAP (Debugging)
 - [ ] Testing
