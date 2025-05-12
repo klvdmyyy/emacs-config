@@ -22,3 +22,12 @@ TODO
 ** TODO Disadvantages
 
 TODO
+
+* Roadmap
+
+- [ ] Write basic NixOS
+  - [[https://github.com/fufexan/dotfiles][fufexan's dotfiles]]
+  - [[https://github.com/nix-community/disko][disko]]
+  - [[https://github.com/etu/nixconfig][etu/nixconfig]]
+  - [[https://github.com/MatthiasBenaets/nix-config][MatthiasBenaets' nix-config]]
+- [ ] Simplify, Restructure, Organize, Optimize and etc
