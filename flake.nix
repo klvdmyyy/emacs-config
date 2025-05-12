@@ -5,13 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    hardware = {
-      url = "github:NixOS/nixos-hardware";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-parts = {
+      url = "hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hardware = {
+      url = "github:NixOS/nixos-hardware";
     };
 
     agenix = {
