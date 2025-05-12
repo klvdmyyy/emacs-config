@@ -35,7 +35,8 @@ Roadmap of this configuration
 - [ ] Organizing
   - [ ] Setup Org-mode
   - [ ] Setup Org-agenda
-- [ ] Support my main languages
+- [-] Support my main languages 
+  - [X] Nix
   - [ ] C
   - [ ] Zig
   - [ ] Python
@@ -390,4 +391,12 @@ Golang one of my main programming languages which I currently learning.
   ;; Firstly just install `go-mode' for specific filetype
   (use-package go-mode
     :mode ("\\.go?\\'" . go-mode))
+#+end_src
+
+* Nix support for my Emacs
+
+Just adding =nix-mode=
+#+begin_src emacs-lisp
+  (use-package nix-mode
+    :mode "\\.nix\\'")
 #+end_src
