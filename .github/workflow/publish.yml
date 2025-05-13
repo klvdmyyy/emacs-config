@@ -1,0 +1,30 @@
+name: Publish Blog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: 29.1
+
+      - name: Publishing
+        run: |
+          EMACS=emacs cd blog-src && make -e
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./public

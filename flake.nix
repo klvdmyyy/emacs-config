@@ -24,9 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    /*
     hardware = {
       url = "github:NixOS/nixos-hardware";
-    };
+    };*/
 
     /*
     agenix = {
