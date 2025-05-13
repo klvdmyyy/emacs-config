@@ -31,3 +31,8 @@ TODO
   - [[https://github.com/etu/nixconfig][etu/nixconfig]]
   - [[https://github.com/MatthiasBenaets/nix-config][MatthiasBenaets' nix-config]]
 - [ ] Simplify, Restructure, Organize, Optimize and etc
+
+* Goals of my system
+
+- Incredible Fast Emacs configuration
+- As many Emacs as I can
