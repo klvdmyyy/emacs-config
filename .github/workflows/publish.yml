@@ -21,7 +21,7 @@ jobs:
 
       - name: Publishing
         run: |
-          EMACS=emacs cd blog-src && make -e
+          cd blog-src && EMACS=emacs make -e
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
