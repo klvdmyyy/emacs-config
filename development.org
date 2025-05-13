@@ -1,0 +1,13 @@
+#+TITLE: Development
+
+* Firstly
+
+We need so simple system with excellent Emacs configuration:
+- Hyprland (basic config)
+- Emacs (excellent config!!! _inspiration from guix rde_)
+  - Emacs as code editor
+  - Emacs as terminal
+  - Emacs as git client
+  - Emacs as file manager
+  - Emacs as application launcher
+  - Emacs as IDE
