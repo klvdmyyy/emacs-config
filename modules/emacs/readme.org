@@ -1,0 +1,30 @@
+#+TITLE: Excellent Emacs configuration with Nix
+#+DESCRIPTION: Inspired by `rde' guix-distribution
+#+AUTHOR: Klementiev Dmitry <klementievd08@yandex.ru>
+
+This is main part of my system configuration because I do a lot of things in GNU Emacs.
+
+* Roadmap
+
+- [X] Emacs (pgtk, native-comp)
+- [X] Appearance
+- [X] Eshell
+- [ ] Vterm
+- [ ] All the icons
+- [ ] Completion
+- [ ] Vertico
+- [ ] Corfu
+- [ ] Eglot
+- [ ] Flymake
+- [ ] Elisp
+- [ ] Git
+- [ ] Org
+- [ ] Which-Key
+- [ ] Smartparens
+- [ ] Telega
+- [ ] LSP mode
+- [ ] DAP mode
+- [ ] Flycheck
+- [ ] Yasnippets
+- [ ] Company and Company Box
+- [ ] App launcher
