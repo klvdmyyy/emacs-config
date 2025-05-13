@@ -9,6 +9,10 @@
     ./hardware.configuration.nix
   ];
 
+  system.stateVersion = lib.mkDefault "24.11";
+  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   users.users.mihai = {
     password = "3048";
     isNormalUser = true;
