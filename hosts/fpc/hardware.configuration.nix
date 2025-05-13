@@ -25,6 +25,22 @@ in
 
   fileSystems."/data" =
     {
+      device = mainDevice;
+      fsType = "btrfs";
+      options = ["compress=zstd" "noatime"];
+    };
+
+  fileSystems."/" =
+    {
+      device = secondaryDevice;
+      fsType = "btrfs";
+      options = ["compress=zstd" "noatime"];
+      neededForBoot = true;
+    };
+
+  /* TODO
+  fileSystems."/data" =
+    {
       device = secondaryDevice;
       fsType = "btrfs";
       options = ["subvol=@data" "compress=zstd" "noatime"];
@@ -88,7 +104,7 @@ in
       device = mainDevice;
       fsType = "btrfs";
       options = ["subvol=@home" "compress=zstd" "noatime"];
-    };
+    };*/
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

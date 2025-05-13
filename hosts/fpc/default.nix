@@ -29,6 +29,14 @@
   };
   
   boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      systemd-boot.enable = true;
+    };
+    
     kernelModules = ["tcp_bbr"];
     kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     kernelParams = [
