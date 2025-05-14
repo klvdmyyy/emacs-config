@@ -130,4 +130,92 @@ parses its input."
   (autoload 'mini-frame-mode "mini-frame")
   (if after-init-time
       (mini-frame-mode 1)
-    (add-hook 'after-init-hook 'mini-frame-mode)))
+    (add-hook 'after-init-hook 'mini-frame-mode))
+
+  (setq history-length 10000)
+  (setq
+   savehist-file
+   (concat (or (getenv "XDG_CACHE_HOME") "~/.cache")
+           "/emacs/history"))
+
+  ;; (savehist-mode 1)
+  ;; (run-with-idle-timer 30 t 'savehist-save)
+
+  (define-key global-map (kbd "s-.") 'embark-act)
+  (define-key global-map (kbd "s->") 'embark-become)
+
+
+  (define-key minibuffer-local-map (kbd "M-r") 'consult-history)
+  (define-key global-map (kbd "M-y") 'consult-yank-pop)
+  (define-key global-map (kbd "s-B") 'consult-buffer)
+  (define-key global-map (kbd "C-x C-r") 'consult-recent-file)
+  (define-key minibuffer-local-map (kbd "s-g") 'embark-become)
+  ;; (define-key global-map (kbd "M-.") 'embark-dwim)
+
+  (let ((map goto-map))
+    (define-key map (kbd "g") 'consult-goto-line)
+    (define-key map (kbd "M-g") 'consult-goto-line)
+    (define-key map (kbd "l") 'consult-line)
+    (define-key map (kbd "o") 'consult-outline)
+    (define-key map (kbd "i") 'consult-imenu)
+    (define-key map (kbd "m") 'consult-mark)
+    (define-key map (kbd "M") 'consult-global-mark)
+    (define-key map (kbd "b") 'consult-bookmark))
+
+  (defun rde-goto-line-relative ()
+    "Just a wrapper around `consult-goto-line', which uses
+relative line numbers, when narrowing is active."
+    (interactive)
+    (let ((consult-line-numbers-widen nil))
+      (call-interactively 'consult-goto-line)))
+
+  (define-key narrow-map (kbd "g") 'rde-goto-line-relative)
+
+  (let ((map search-map))
+    (define-key map (kbd "f") 'consult-find)
+    (define-key map (kbd "g") 'consult-ripgrep)
+    (define-key map (kbd "e") 'consult-isearch-history)
+    (define-key map (kbd "l") 'consult-line))
+  ;; (define-key global-map (kbd "C-S-s") 'consult-line)
+
+  (autoload 'consult-isearch-history "consult")
+  (let ((map isearch-mode-map))
+    (define-key map (kbd "M-e") 'consult-isearch-history)
+    (define-key map (kbd "M-s e") 'consult-isearch-history)
+    (define-key map (kbd "M-s l") 'consult-line))
+  ;; (define-key isearch-mode-map (kbd "C-S-s") 'consult-line)
+
+  ;; MAYBE: Share this keybinding with switch-to-buffer?
+  (define-key minibuffer-local-map (kbd "s-b") 'exit-minibuffer)
+
+  (autoload 'consult-customize "consult" "" nil 'macro)
+  (autoload 'consult--customize-set "consult")
+
+  (autoload 'embark-open-externally "embark")
+  (with-eval-after-load
+      'embark
+    (require 'embark-consult))
+
+  (with-eval-after-load
+      'xref
+    (setq xref-show-xrefs-function 'consult-xref))
+
+  (with-eval-after-load
+      'consult
+    (require 'embark-consult)
+
+    ;(setq consult-ripgrep-args
+    ;      (replace-regexp-in-string "^rg" ,(file-append ripgrep "/bin/rg")
+    ;                                consult-ripgrep-args))
+    ;(consult-customize consult-buffer :preview-key "M-.")
+    ;(consult-customize consult-history :category 'consult-history)
+    ;(consult-customize consult-line :inherit-input-method t)
+    )
+
+  (with-eval-after-load
+      'marginalia
+    (setq marginalia-align 'left))
+
+  (autoload 'marginalia-mode "marginalia")
+  (marginalia-mode 1))
+

@@ -5,16 +5,18 @@
   pkgs,
   ...
 }: {
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+  };
   
   programs.emacs = {
     enable = true; # Maybe unnecessary ?! (we enabling emacs as system service)
     extraConfig = lib.mkBefore ''
-${builtins.readFile ./config/early.el}
 ${builtins.readFile ./config/general.el}
 ${builtins.readFile ./config/nix-mode.el}
 ${builtins.readFile ./config/smartparens.el}
 ${builtins.readFile ./config/org.el}
+${builtins.readFile ./config/completion.el}
     '';
     package = with pkgs; (
       (emacsPackagesFor emacs).emacsWithPackages
@@ -24,6 +26,18 @@ ${builtins.readFile ./config/org.el}
           nix-mode
           minions
           smartparens
+          
+          # Completion (feature-emacs-completion)
+          mini-frame
+          orderless
+          marginalia
+          pcmpl-args
+          cape
+          consult
+          embark
+
+          # Vertico (feature-emacs-vertico)
+          vertico
         ])
     );
   };

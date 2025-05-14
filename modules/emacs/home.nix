@@ -17,6 +17,7 @@ ${builtins.readFile ./config/nix-mode.el}
 ${builtins.readFile ./config/smartparens.el}
 ${builtins.readFile ./config/org.el}
 ${builtins.readFile ./config/completion.el}
+${builtins.readFile ./config/vertico.el}
     '';
     package = with pkgs; (
       (emacsPackagesFor emacs).emacsWithPackages
