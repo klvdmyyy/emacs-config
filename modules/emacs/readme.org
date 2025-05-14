@@ -6,23 +6,32 @@ This is main part of my system configuration because I do a lot of things in GNU
 
 * Structure of Emacs configuration
 
-- =default.nix= - the Emacs package. In this file we enabling native-compilation, pgtk and compile packages.
-- =home.nix= - General Emacs configuration file. In this file we define =early-init.el= and general configuration. Also in home nix file we import other features
+- =home.nix= - General Emacs configuration file. In this file we define general configuration
 - =config/*.el= - ELisp source files (maybe rename from =config= to =elisp=)
 
-* Why not Guix?
+* todolist
 
-For now unique advantages of Guix is not enough to move.
+- [ ] Setup Org mode
+- [ ] JetBrains Mono font
+- [ ] Setup direnv
+- [ ] Setup for development
+  - [ ] Golang
+  - [ ] Docker
+  - [ ] Kubernetes
+  - [ ] Zig language
+  - [ ] Yaml
 
 * Roadmap
 
-- [X] Emacs (pgtk, native-comp)
+- [-] Emacs
+  - [ ] pgtk
+  - [X] native compilation
 - [X] Appearance
 - [X] Eshell
 - [ ] Vterm
 - [ ] All the icons
-- [ ] Completion
-- [ ] Vertico
+- [X] Completion
+- [X] Vertico
 - [ ] Corfu
 - [ ] Eglot
 - [ ] Flymake

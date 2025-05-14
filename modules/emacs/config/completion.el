@@ -1,3 +1,5 @@
+(setq x-gtk-resize-child-frames 'resize-mode)
+
 (eval-when-compile
   (require 'marginalia)
   (require 'consult))

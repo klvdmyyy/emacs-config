@@ -1,5 +1,9 @@
 (load-theme 'monokai-pro t nil)
 
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq auto-save-list-file-name nil)
+
 (with-eval-after-load 'gcmh
   (setq gcmh-verbose 1
         gcmh-high-cons-threshold (* 16 1024 1024 1024))
@@ -33,3 +37,5 @@
 (setq window-divider-default-right-width 8)
 
 (window-divider-mode)
+
+;; TODO: feature-emacs-input-methods

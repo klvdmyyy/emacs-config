@@ -24,7 +24,6 @@
          # Specific hardware configuration
          ./fpc
          "${self}/modules/gnome"
-         "${self}/modules/emacs"
 
          inputs.home-manager.nixosModules.home-manager {
            home-manager = {

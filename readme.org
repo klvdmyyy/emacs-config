@@ -1,0 +1,12 @@
+#+TITLE: IX - My system configuration
+#+AUTHOR: Klementiev Dmitry <klementievd08@yandex.ru>
+
+* About
+
+| *OS/Package Manager* | Nix      |
+| *Window Manager*     | Hyprland |
+| *Code Editor*        | Emacs    |
+
+* TODOLIST
+
+- [ ] Move to Hyprland
