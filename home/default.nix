@@ -5,10 +5,6 @@
   inputs,
   ...
 }: {
-  "klvdmyyy@fpc" = [
-    ../modules/emacs/home.nix
-    
-    {
       home = {
         username = "klvdmyyy";
         homeDirectory = "/home/klvdmyyy";
@@ -18,7 +14,6 @@
         ];
       };
 
-      program.home-manager.enable = true;
-    }
-  ];
+      programs.zsh.enable = true;
+      programs.home-manager.enable = true;
 }

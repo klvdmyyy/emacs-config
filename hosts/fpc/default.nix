@@ -13,10 +13,10 @@
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  users.users.mihai = {
+  users.users.klvdmyyy = {
     password = "3048";
     isNormalUser = true;
-    shell = pkgs.zsh;
+    #shell = pkgs.zsh;
     extraGroups = [
       "input"
       "libvirtd"

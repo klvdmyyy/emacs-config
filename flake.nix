@@ -1,7 +1,7 @@
 {
   description = "(Gu/N)ix configuration";
 
-  outputs = inputs @ { self, flake-parts, ... }:
+  outputs = inputs@{ self, flake-parts, home-manager, ... }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux"];
 
@@ -20,7 +20,7 @@
     };
 
     flake-parts = {
-      url = "hercules-ci/flake-parts";
+      url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

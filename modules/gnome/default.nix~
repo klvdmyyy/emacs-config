@@ -13,24 +13,18 @@
   };
 
   services = {
-    displayManager = {
-      # gdm.enable = true;
-      defaultSession = "gnome";
-    };
-    libinput.enable = true;
-
     xserver = {
-      enable = false;
+      enable = true;
 
-      xkb.layout = "us, ru";
-      xkb.options = "grp:win_space_toggle";
-      #libinput.enable = true;
+      layout = "us, ru";
+      xkbOptions = "grp:win_space_toggle";
+      libinput.enable = true;
       modules = [ pkgs.xf86_input_wacom ];
       wacom.enable = true;
 
       displayManager = {
         gdm.enable = true;
-        #defaultSession = "gnome";
+        defaultSession = "gnome-wayland";
       };
       desktopManager.gnome.enable = true;
     };

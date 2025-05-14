@@ -6,10 +6,10 @@
   #nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
   
   services.emacs = {
-    enable = false;
+    enable = true;
     package = with pkgs; (
-      (emacsPackagesFor emacs).emacsWithPackages
-        (epkgs: with epkgs; [
+      (emacsPackagesFor emacs).emacsWithPackages (
+        epkgs: with epkgs; [
           # ============================= From Me =============================
           gcmh
           monokai-pro-theme

@@ -35,7 +35,7 @@ in
       device = "/dev/sdb2";
       fsType = "btrfs";
       options = ["compress=zstd" "noatime"];
-      neededForBoot = true;
+      #neededForBoot = true;
     };
 
   /* TODO

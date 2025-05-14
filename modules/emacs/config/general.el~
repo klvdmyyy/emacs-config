@@ -1,4 +1,5 @@
-(load-theme 'monokai-pro t nil)
+(with-eval-after-load 'monokai-pro-theme
+  (load-theme 'monokai-pro t nil))
 
 (with-eval-after-load 'gcmh
   (setq gcmh-verbose 1

@@ -146,7 +146,7 @@ with lib;
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.auto-move-windows
     gnomeExtensions.custom-hot-corners-extended
-    gnomeExtensions.openweather
+    #gnomeExtensions.openweather
     gnomeExtensions.tiling-assistant
     gnomeExtensions.color-picker
   ];
