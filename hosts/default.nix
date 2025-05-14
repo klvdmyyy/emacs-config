@@ -23,7 +23,7 @@
        modules = [
          # Specific hardware configuration
          ./fpc
-         "${config}/modules/hyprland"
+         "${self}/modules/hyprland"
 
          inputs.home-manager.nixosModules.home-manager {
            home-manager = {
