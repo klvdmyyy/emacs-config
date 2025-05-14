@@ -11,7 +11,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-diskseq/1";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           partitions = {
@@ -42,7 +42,7 @@
       };
       secondary = {
         type = "disk";
-        device = "/dev/disk/by-diskseq/2";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {

@@ -19,20 +19,20 @@ in
 
   fileSystems."/boot/efi" =
     {
-      device = espDevice;
+      device = "/dev/sdb1";
       fsType = "vfat";
     };
 
   fileSystems."/data" =
     {
-      device = mainDevice;
+      device = "/dev/sda1";
       fsType = "btrfs";
       options = ["compress=zstd" "noatime"];
     };
 
   fileSystems."/" =
     {
-      device = secondaryDevice;
+      device = "/dev/sdb2";
       fsType = "btrfs";
       options = ["compress=zstd" "noatime"];
       neededForBoot = true;
