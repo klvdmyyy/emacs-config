@@ -23,12 +23,12 @@
        modules = [
          # Specific hardware configuration
          ./fpc
-         "${self}/modules/gnome"
+         "${config}/modules/hyprland"
 
          inputs.home-manager.nixosModules.home-manager {
            home-manager = {
              users.klvdmyyy.imports = [
-               ../modules/gnome/home.nix
+               ../modules/hyprland/home.nix
                ../modules/emacs/home.nix
                ../home
              ];
