@@ -8,7 +8,6 @@ This is main part of my system configuration because I do a lot of things in GNU
 
 - =default.nix= - the Emacs package. In this file we enabling native-compilation, pgtk and compile packages.
 - =home.nix= - General Emacs configuration file. In this file we define =early-init.el= and general configuration. Also in home nix file we import other features
-- =features/*.nix= - Features folders. Contain nix source files with a lot of features for your Emacs configuration
 - =config/*.el= - ELisp source files (maybe rename from =config= to =elisp=)
 
 * Why not Guix?
