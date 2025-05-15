@@ -11,15 +11,20 @@ This is main part of my system configuration because I do a lot of things in GNU
 
 * todolist
 
+- [ ] Rework (move from rde code). Just write my own configuration
+  - [ ] Use Hyrdra and my keybindings
+  - [ ] Configure mini-frame (for now it's so laggy and don't work properly)
 - [ ] Setup Org mode
 - [ ] JetBrains Mono font
 - [ ] Setup direnv
+- [ ] Setup Magit and Projectile
 - [ ] Setup for development
   - [ ] Golang
   - [ ] Docker
   - [ ] Kubernetes
   - [ ] Zig language
   - [ ] Yaml
+  - [ ] Support for Editor Config
 
 * Roadmap
 

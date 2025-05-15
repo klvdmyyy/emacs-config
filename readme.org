@@ -3,10 +3,7 @@
 
 * About
 
-| *OS/Package Manager* | Nix      |
-| *Window Manager*     | Hyprland |
-| *Code Editor*        | Emacs    |
-
-* TODOLIST
-
-- [ ] Move to Hyprland
+| *OS/Package Manager* | Nix         |
+| *Window Manager*     | Hyprland    |
+| *Code Editor*        | GNU Emacs   |
+| *Web Browser*        | Zen Browser |
