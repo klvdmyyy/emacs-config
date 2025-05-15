@@ -48,8 +48,10 @@
     };
 
     # hyprwm
-    hyprland.url = "github:hyprwm/hyprland";
-
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+    };
+    
     hypridle = {
       url = "github:hyprwm/hypridle";
       inputs = {

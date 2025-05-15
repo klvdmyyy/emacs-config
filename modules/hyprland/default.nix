@@ -23,7 +23,7 @@
   ) 10);
 in {
   imports = [
-    #inputs.hyprland.nixosModules.default
+    inputs.hyprland.nixosModules.default
   ];
 
   # Greetd UWSM
