@@ -48,7 +48,7 @@ Face/Frame configuration. Setup fonts and cool built-in Emacs UI things
     (load-face-attributes))
 
   (column-number-mode)
-  (setq-default display-line-numbers 'relative) ; CHECKTHIS
+  (setq display-line-numbers-type 'relative) ; CHECKTHIS
   (global-display-line-numbers-mode t)
 
   (dolist (mode '(org-mode-hook
@@ -75,16 +75,6 @@ Initialize =straight.el=
         (goto-char (point-max))
         (eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
-#+end_src
-
-Display startup time. /(I use emacs as daemon and I don't really need it)/
-#+begin_src emacs-lisp
-  ;; Startup time
-  (let ((emacs-start-time (current-time)))
-    (add-hook 'emacs-startup-hook
-              (lambda ()
-                (let ((elapsed (float-time (time-subtract (current-time) emacs-start-time))))
-                  (message "[Emacs initialized in %.3fs]" elapsed)))))
 #+end_src
 
 * Features. I call it Features
