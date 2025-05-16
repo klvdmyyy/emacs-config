@@ -1,0 +1,12 @@
+auto-save-list
+eln-cache
+eshell
+straight
+
+*.org
+*.el
+!readme.org
+!init.el
+!early-init.el
+
+*~
