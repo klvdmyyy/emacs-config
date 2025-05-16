@@ -5,6 +5,46 @@ Org Babel Emacs configuration.
 
 Something like executable Wiki.
 
+* TODO Roadmap
+
+- [ ] Configure mini-frame (it works laggy)
+- [ ] Complete completion configuring -_-
+- [ ] Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)
+- [ ] Configure =telega.el= (Telegram Client)
+
+* Dependencies
+
+** Listed
+
+*** System packages
+
+- ripgrep
+- fd
+
+*** Python packages
+
+- epc
+- orjson
+- sexpdata
+- six
+- setuptools
+- paramiko
+- rapidfuzz
+- watchdog
+- packaging
+
+** Installation
+
+#+begin_src sh
+  $ yay -Syy \
+    \ # Python packages
+    python-epc python-orjson python-sexpdata \
+    python-six python-setuptools python-paramiko \
+    python-rapidfuzz python-watchdog python-packaging \
+    \ # System packages
+    ripgrep fd
+#+end_src
+
 * Fundamental things of my configuration
 
 Remove backup files. Remove warnings and errors from native compilation
