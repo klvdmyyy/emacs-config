@@ -9,4 +9,6 @@ straight
 !init.el
 !early-init.el
 
+tramp
+
 *~
