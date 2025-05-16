@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-#+TITLE: IX - My system configuration
-#+AUTHOR: Klementiev Dmitry <klementievd08@yandex.ru>
-
-* About
-
-| *OS/Package Manager* | Nix         |
-| *Window Manager*     | Hyprland    |
-| *Code Editor*        | GNU Emacs   |
-| *Web Browser*        | Zen Browser |
-=======
 #+TITLE: Org-babel Emacs configuration
 #+AUTHOR: Klementiev Dmitry <klementievd08@yandex.ru>
 
@@ -189,4 +178,3 @@ Maybe I don't need =eat= package. Replacements:
 ** Appearance feature
 
 TODO
->>>>>>> 5c260cf (Initial commit)
