@@ -205,7 +205,6 @@ Maybe I don't need =eat= package. Replacements:
      :host github
      :repo "manateelazycat/lsp-bridge"
      :files ("*.el" "*.py"
-  	   "*/*.el" "*/*.py"
   	   ("acm" "acm/*.el"
   	    ("icons" "acm/icons/*.svg"))
   	   ("core" "core/*.py"
