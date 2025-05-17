@@ -24,6 +24,11 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 - fd
 - ttf-jetbrains-mono
 
+*** Language servers (etc)
+
+- gopls
+- basedpyright
+
 *** Python packages
 
 - epc
@@ -39,13 +44,16 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 ** Installation
 
 #+begin_src sh
-  $ yay -Syy \
-    \ # Python packages
-    python-epc python-orjson python-sexpdata \
+  # System packages
+  $ yay -Syy python ripgrep fd ttf-jetbrains-mono
+
+  # Python packages
+  $ yay -Syy python-epc python-orjson python-sexpdata \
     python-six python-setuptools python-paramiko \
-    python-rapidfuzz python-watchdog python-packaging \
-    \ # System packages
-    ripgrep fd ttf-jetbrains-mono
+    python-rapidfuzz python-watchdog python-packaging
+
+  # Language Servers (etc)
+  $ yay -Syy gopls basedpyright
 #+end_src
 
 * Fundamental things of my configuration
@@ -54,6 +62,13 @@ Remove backup files. Remove warnings and errors from native compilation
 #+begin_src emacs-lisp
   (setq make-backup-files nil)
   (setq native-comp-async-report-warnings-errors 'silent)
+#+end_src
+
+Setup default indentation.
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+  (setq indent-line-function 'insert-tab)
 #+end_src
 
 Do some appearance stuff. Setup cursor and remove UI blobs
@@ -214,11 +229,11 @@ Maybe I don't need =eat= package. Replacements:
   	   ("multiserver" "multiserver/*.json")
   	   ("resources" "resources/*"))))
 
-  (straight-use-package
-   '(lsp-booster
-     :type git
-     :host github
-     :repo "blahgeek/emacs-lsp-booster"))
+  ;; (straight-use-package
+  ;;  '(lsp-booster
+  ;;    :type git
+  ;;    :host github
+  ;;    :repo "blahgeek/emacs-lsp-booster"))
 #+end_src
 
 ** Appearance feature
@@ -262,11 +277,21 @@ I think =rainbow-mode= should be only in CSS/SCSS code
   (add-hook 'prog-mode-hook 'smartparens-strict-mode)
 
   (dolist (mode '(emacs-lisp-mode
-  		lisp-mode
-  		common-lisp-mode
-  		scheme-mode))
+    		lisp-mode
+    		common-lisp-mode
+    		scheme-mode))
     (sp-local-pair mode "'" nil :when '(sp-in-string-p))
     (sp-local-pair mode "`" nil :when '(sp-in-string-p)))
+
+  (defun indent-between-pair (&rest _ignored)
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode))
+
+  (sp-local-pair 'prog-mode "{" nil :post-handlers '((indent-between-pair "RET")))
+  (sp-local-pair 'prog-mode "[" nil :post-handlers '((indent-between-pair "RET")))
+  (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
 #+end_src
 
 ** Terminal Emulator feature
