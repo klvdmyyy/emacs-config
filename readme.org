@@ -288,7 +288,7 @@ I use =eat=
     (require 'consult))
 
   (with-eval-after-load 'minibuffer
-    (define-key global-map (kbd "C-x b") 'consult-buffer)
+    ;; (define-key global-map (kbd "C-x b") 'consult-buffer)
     (define-key global-map (kbd "s-B") 'consult-buffer)
     (define-key global-map (kbd "M-r") 'consult-history)
     (define-key global-map (kbd "M-y") 'consult-yank-pop)
