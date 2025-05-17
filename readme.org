@@ -193,6 +193,21 @@ I adding auto-mode-alist here. I don't need to use for it separated page
   (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
 #+end_src
 
+*** Git integration
+
+#+begin_src emacs-lisp
+  (straight-use-package 'magit)
+  (straight-use-package 'magit-todos)
+
+  ;; (straight-use-package 'git-link)
+
+  ;; Can't clone repo from `codeberg'
+  ;; (straight-use-package 'git-timemachine)
+  
+  ;; (straight-use-package 'git-gutter-fringe)
+  ;; (straight-use-package 'git-gutter-transient)
+#+end_src
+
 *** IDE packages (and all other packages -_-)
 
 Maybe I don't need =eat= package. Replacements:
@@ -394,4 +409,13 @@ I use =eat=
   (with-eval-after-load 'lsp-bridge
     (add-hook 'python-mode-hook 'lsp-bridge-mode)
     (add-hook 'go-mode-hook 'lsp-bridge-mode))
+#+end_src
+
+** Git feature
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'magit
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'magit-insert-local-branches
+                            'magit-insert-stashes))
 #+end_src
