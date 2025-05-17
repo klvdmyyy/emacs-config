@@ -363,4 +363,10 @@ I use =eat=
 
 ** LSP feature
 
-TODO
+#+begin_src emacs-lisp
+  (eval-when-compile
+    (require 'lsp-bridge))
+  (with-eval-after-load 'lsp-bridge
+    (add-hook 'python-mode-hook 'lsp-bridge-mode)
+    (add-hook 'go-mode-hook 'lsp-bridge-mode))
+#+end_src
