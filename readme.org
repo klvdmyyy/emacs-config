@@ -12,6 +12,8 @@ Something like executable Wiki.
 - [ ] Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)
 - [ ] Configure =telega.el= (Telegram Client)
 
+Also I thinking about writing my own Guix distribution and move to it when my archlinux configuration has been complete
+
 * Dependencies
 
 ** Listed
