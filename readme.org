@@ -200,12 +200,25 @@ Maybe I don't need =eat= package. Replacements:
                  ("integration" "integration/*")
                  (:exclude ".dir-locals.el" "*-tests.el"))))
 
+  (straight-use-package 'markdown-mode)
+  (straight-use-package 'yasnippet)
+
   (straight-use-package
    '(lsp-bridge
      :type git
      :host github
-     :repo "manateelazycat/lsp-bridge"))
-  
+     :repo "manateelazycat/lsp-bridge"
+     :files ("*.el" "*.py"
+  	   "*/*.el" "*/*.py"
+  	   ("acm" "acm/*.el"
+  	    ("icons" "acm/icons/*.svg"))
+  	   ("core" "core/*.py"
+  	    ("handler" "core/handler/*.py"
+  	     ("jdtls" "core/handler/jdtls/*.py")))
+  	   ("langserver" "langserver/*.json")
+  	   ("multiserver" "multiserver/*.json")
+  	   ("resources" "resources/*"))))
+
   (straight-use-package
    '(lsp-booster
      :type git
