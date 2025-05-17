@@ -195,11 +195,12 @@ A lot of features inspired from [[https://git.sr.ht/~abcdw/rde][Guix RDE]]
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 #+end_src
 
-I think =rainbow-mode= should be only in CSS/SCSS code
+I think =rainbow-mode= should be only in CSS/SCSS code (and =web-mode=)
 #+begin_src emacs-lisp
   (autoload 'rainbow-mode "rainbow-mode")
   (add-hook 'css-mode-hook 'rainbow-mode)
   (add-hook 'scss-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode)
 #+end_src
 
 ** Smartparens feature
