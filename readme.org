@@ -142,128 +142,33 @@ A lot of features inspired from [[https://git.sr.ht/~abcdw/rde][Guix RDE]]
 
 ** Installing packages
 
-Yeap. I install all packages in one code block at one time. I like it
+#+begin_src emacs-lisp :noweb yes :noweb-prefix no
+  (defvar my-packages '(<<packages>>
+                        ))
 
-*** Appearance related packages
-
-#+begin_src emacs-lisp
-  (straight-use-package 'kaolin-themes)
-  (straight-use-package 'monokai-pro-theme)
-  (straight-use-package 'rainbow-delimiters)
-  (straight-use-package 'rainbow-mode)
-#+end_src
-
-*** Good text editing
-
-#+begin_src emacs-lisp
-  (straight-use-package 'smartparens)
-#+end_src
-
-*** Completion and other mini-buffer stuff
-
-#+begin_src emacs-lisp
-  (straight-use-package 'vertico)
-  (straight-use-package 'mini-frame)
-  (straight-use-package 'orderless)
-  (straight-use-package 'marginalia)
-  (straight-use-package 'pcmpl-args)
-  (straight-use-package 'cape)
-  (straight-use-package 'consult)
-  (straight-use-package 'embark)
-#+end_src
-
-*** Specific modes for files
-
-I adding auto-mode-alist here. I don't need to use for it separated page
-
-#+begin_src emacs-lisp
-  (straight-use-package 'yuck-mode)
-  (autoload 'yuck-mode "yuck-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.yuck\\'" . yuck-mode))
-
-  (straight-use-package 'scss-mode)
-  (autoload 'scss-mode "scss-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
-
-  (straight-use-package 'go-mode)
-  (autoload 'go-mode "go-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
-
-  (straight-use-package 'zig-mode)
-  (autoload 'zig-mode "zig-mode" nil t)
-  (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
-#+end_src
-
-*** Git integration
-
-#+begin_src emacs-lisp
-  (straight-use-package 'magit)
-  (straight-use-package 'magit-todos)
-
-  ;; (straight-use-package 'git-link)
-
-  ;; Can't clone repo from `codeberg'
-  ;; (straight-use-package 'git-timemachine)
-  
-  ;; (straight-use-package 'git-gutter-fringe)
-  ;; (straight-use-package 'git-gutter-transient)
-#+end_src
-
-*** IDE packages (and all other packages -_-)
-
-Maybe I don't need =eat= package. Replacements:
-- vterm
-- coterm
-- eshell
-
-#+begin_src emacs-lisp
-  (straight-use-package
-   '(eat :type git
-         :host codeberg
-         :repo "akib/emacs-eat"
-         :files ("*.el" ("term" "term/*.el") "*.texi"
-                 "*.ti" ("terminfo/e" "terminfo/e/*")
-                 ("terminfo/65" "terminfo/65/*")
-                 ("integration" "integration/*")
-                 (:exclude ".dir-locals.el" "*-tests.el"))))
-
-  (straight-use-package 'markdown-mode)
-  (straight-use-package 'yasnippet)
-
-  (straight-use-package
-   '(lsp-bridge
-     :type git
-     :host github
-     :repo "manateelazycat/lsp-bridge"
-     :files ("*.el" "*.py"
-  	   ("acm" "acm/*.el"
-  	    ("icons" "acm/icons/*.svg"))
-  	   ("core" "core/*.py"
-  	    ("handler" "core/handler/*.py"
-  	     ("jdtls" "core/handler/jdtls/*.py")))
-  	   ("langserver" "langserver/*.json")
-  	   ("multiserver" "multiserver/*.json")
-  	   ("resources" "resources/*"))))
-
-  ;; (straight-use-package
-  ;;  '(lsp-booster
-  ;;    :type git
-  ;;    :host github
-  ;;    :repo "blahgeek/emacs-lsp-booster"))
+  (dolist (package my-packages)
+    (straight-use-package package))
 #+end_src
 
 ** Appearance feature
 
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  ;; kaolin-themes
+  ;; doom-themes
+  ;; monokai-pro-theme
+  ;; zenburn-theme
+  ;; spacemacs-theme
+  solarized-theme
+  rainbow-delimiters
+  rainbow-mode
+
+#+end_src
+
 *** Loading theme
 
-Beatiful themes:
-- =monokai-pro=
-- =kaolin-*= (i love =kaolin-light=)
-
 #+begin_src emacs-lisp
-  ;; (require 'monokai-pro-theme)
-  (require 'kaolin-themes)
-  (load-theme 'kaolin-light t nil)
+  (require 'solarized-theme)
+  (load-theme 'solarized-light t nil)
 #+end_src
 
 *** Rainbow (delimiters) mode
@@ -281,6 +186,10 @@ I think =rainbow-mode= should be only in CSS/SCSS code
 #+end_src
 
 ** Smartparens feature
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  smartparens
+#+end_src
 
 #+begin_src emacs-lisp
   (eval-when-compile
@@ -312,6 +221,17 @@ I think =rainbow-mode= should be only in CSS/SCSS code
 
 ** Terminal Emulator feature
 
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  (eat :type git
+       :host codeberg
+       :repo "akib/emacs-eat"
+       :files ("*.el" ("term" "term/*.el") "*.texi"
+               "*.ti" ("terminfo/e" "terminfo/e/*")
+               ("terminfo/65" "terminfo/65/*")
+               ("integration" "integration/*")
+               (:exclude ".dir-locals.el" "*-tests.el")))
+#+end_src
+
 I use =eat=
 
 #+begin_src emacs-lisp
@@ -330,6 +250,16 @@ I use =eat=
 #+end_src
 
 ** Completion feature
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  mini-frame
+  ;; orderless
+  marginalia
+  ;; pcmpl-args
+  ;; cape
+  consult
+  ;; embark
+#+end_src
 
 #+begin_src emacs-lisp
   (eval-when-compile
@@ -385,6 +315,10 @@ I use =eat=
 
 ** Vertico feature
 
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  vertico
+#+end_src
+
 #+begin_src emacs-lisp
   ;; Vertico feature
   (eval-when-compile
@@ -404,6 +338,24 @@ I use =eat=
 
 ** LSP feature
 
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  markdown-mode
+  yasnippet
+  (lsp-bridge
+   :type git
+   :host github
+   :repo "manateelazycat/lsp-bridge"
+   :files ("*.el" "*.py"
+           ("acm" "acm/*.el"
+            ("icons" "acm/icons/*.svg"))
+           ("core" "core/*.py"
+            ("handler" "core/handler/*.py"
+             ("jdtls" "core/handler/jdtls/*.py")))
+           ("langserver" "langserver/*.json")
+           ("multiserver" "multiserver/*.json")
+           ("resources" "resources/*")))
+#+end_src
+
 #+begin_src emacs-lisp
   (eval-when-compile
     (require 'lsp-bridge))
@@ -413,6 +365,15 @@ I use =eat=
 #+end_src
 
 ** Git feature
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  magit
+  magit-todos
+  ;; git-link
+  ;; git-timemachine
+  ;; git-gutter-fringe
+  ;; git-gutter-transient
+#+end_src
 
 #+begin_src emacs-lisp
   (with-eval-after-load 'magit
