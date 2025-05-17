@@ -7,9 +7,14 @@ Something like executable Wiki.
 
 * TODO Roadmap
 
+- [ ] Complete Org configuration (Yea. I need to learn full Org functional)
+  - [ ] Org Mode
+  - [ ] Org Agenda
+  - [ ] Org Babel
+  - [ ] Org Contacts
 - [ ] Configure mini-frame (it works laggy)
 - [ ] Complete completion configuring -_-
-- [ ] Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)
+- [ ] ~Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)~
 - [ ] Configure =telega.el= (Telegram Client)
 
 Also I thinking about writing my own Guix distribution and move to it when my archlinux configuration has been complete
@@ -19,6 +24,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 ** Listed
 
 *** System packages
+#+COMMENT: TODO: `dwebp' and `tgs2png` packages for `telega.el' (Read about dependencies in manual)
 
 - ripgrep
 - fd
@@ -27,6 +33,11 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 - go
 - zig
 - python
+- make
+- gperf
+- cmake
+- pkg-config
+- telegram-tdlib
 
 *** Language servers (etc)
 
@@ -50,7 +61,8 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 
 #+begin_src sh
   # System packages
-  $ yay -Syy python go zig ripgrep fd ttf-jetbrains-mono git
+  $ yay -Syy python go zig ripgrep fd ttf-jetbrains-mono git \
+    make cmake gperf pkg-config telegram-tdlib
 
   # Python packages
   $ yay -Syy python-epc python-orjson python-sexpdata \
@@ -115,8 +127,9 @@ Face/Frame configuration. Setup fonts and cool built-in Emacs UI things
   (global-display-line-numbers-mode t)
 
   (dolist (mode '(org-mode-hook
-  		term-mode-hook
-  		eshell-mode-hook))
+  		        term-mode-hook
+  		        eshell-mode-hook
+                  org-agenda-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
@@ -147,7 +160,7 @@ A lot of features inspired from [[https://git.sr.ht/~abcdw/rde][Guix RDE]]
 ** Installing packages
 
 #+begin_src emacs-lisp :noweb yes :noweb-prefix no
-  (defvar my-packages '(<<packages>>
+  (setq my-packages '(<<packages>>
                         ))
 
   (dolist (package my-packages)
@@ -223,6 +236,35 @@ I think =rainbow-mode= should be only in CSS/SCSS code
   (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
 #+end_src
 
+** Org feature
+
+It contains all code related to *Org Mode*
+
+*** Improving the Look
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  org-bullets
+#+end_src
+
+#+begin_src emacs-lisp
+  (dolist (mode '(org-indent-mode
+                  org-bullets-mode
+                  visual-line-mode))
+    (add-hook 'org-mode-hook mode))
+#+end_src
+
+*** Agenda things
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  ;; org-contacts ; For contacts management (`mu4e-contacts' - alternative)
+  ;; mu4e-contacts ; Alternative: `org-contacts'
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq org-agenda-files
+        (directory-files-recursively "~/projects/org/" "\\.org$"))
+#+end_src
+
 ** Terminal Emulator feature
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
@@ -277,6 +319,14 @@ I use =eat=
     (define-key global-map (kbd "M-y") 'consult-yank-pop)
     (define-key global-map (kbd "C-s") 'consult-line)
     (define-key global-map (kbd "C-x C-r") 'consult-recent-file)
+
+    (defun completion--mode-buffers (&rest modes)
+      "Return a list of buffers that are derived from MODES in `buffer-list'."
+      (cl-remove-if-not
+       (lambda (buffer)
+         (with-current-buffer buffer
+           (cl-some 'derived-mode-p modes)))
+       (buffer-list)))
     
     (with-eval-after-load
         'mini-frame
@@ -347,6 +397,7 @@ I use =eat=
   scss-mode
   go-mode
   zig-mode
+  web-mode
 #+end_src
 
 #+begin_src emacs-lisp
@@ -361,6 +412,15 @@ I use =eat=
 
   (autoload 'zig-mode "zig-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
+#+end_src
+
+Associate =.tmpl= files with HTML
+#+begin_src emacs-lisp
+  (autoload 'web-mode "web-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+  (add-hook 'web-mode-hook (lambda () (smartparens-mode 0)))
 #+end_src
 
 ** LSP feature
@@ -408,4 +468,37 @@ I use =eat=
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-local-branches
                             'magit-insert-stashes))
+#+end_src
+
+** Telegram feature
+
+Emacs Lisp Dependencies
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  visual-fill-column
+  rainbow-identifiers
+#+end_src
+
+Telegram Client package
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  telega
+#+end_src
+
+#+begin_src emacs-lisp
+  (require 'telega)
+  (setq telega-server-libs-prefix "/usr")
+
+  (defvar telega-buffer-source
+    `(:name "Telega"
+            :narrow ?t
+            :category buffer
+            :state ,'consult--buffer-state
+            :items ,(lambda ()
+                      (mapcar 'buffer-name
+                              (completion--mode-buffers
+                               'telega-chat-mode
+                               'telega-root-mode))))
+    "Source for Telega buffers to be set in `consult-buffer-sources'.")
+  (with-eval-after-load 'consult
+    (add-to-list 'consult-buffer-sources
+                 telega-buffer-source 'append))
 #+end_src
