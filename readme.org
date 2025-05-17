@@ -154,10 +154,6 @@ Yeap. I install all packages in one code block at one time. I like it
   (straight-use-package 'cape)
   (straight-use-package 'consult)
   (straight-use-package 'embark)
-
-  (straight-use-package 'corfu)
-  ;; (straight-use-package 'corfu-doc)
-  ;; (straight-use-package 'corfu-candidate-overlay)
 #+end_src
 
 *** Specific modes for files
