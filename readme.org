@@ -340,6 +340,29 @@ I use =eat=
 
 #+end_src
 
+** TODO Specific modes
+
+#+begin_src emacs-lisp :tangle no :noweb-ref packages
+  yuck-mode
+  scss-mode
+  go-mode
+  zig-mode
+#+end_src
+
+#+begin_src emacs-lisp
+  (autoload 'yuck-mode "yuck-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.yuck\\'" . yuck-mode))
+
+  (autoload 'scss-mode "scss-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
+  (autoload 'go-mode "go-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+
+  (autoload 'zig-mode "zig-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
+#+end_src
+
 ** LSP feature
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
@@ -365,7 +388,8 @@ I use =eat=
     (require 'lsp-bridge))
   (with-eval-after-load 'lsp-bridge
     (add-hook 'python-mode-hook 'lsp-bridge-mode)
-    (add-hook 'go-mode-hook 'lsp-bridge-mode))
+    (add-hook 'go-mode-hook 'lsp-bridge-mode)
+    (add-hook 'zig-mode-hook 'lsp-bridge-mode))
 #+end_src
 
 ** Git feature
