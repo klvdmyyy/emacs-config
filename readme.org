@@ -24,11 +24,15 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 - fd
 - ttf-jetbrains-mono
 - git
+- go
+- zig
+- python
 
 *** Language servers (etc)
 
 - gopls
 - basedpyright
+- zls
 
 *** Python packages
 
@@ -46,7 +50,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 
 #+begin_src sh
   # System packages
-  $ yay -Syy python ripgrep fd ttf-jetbrains-mono git
+  $ yay -Syy python go zig ripgrep fd ttf-jetbrains-mono git
 
   # Python packages
   $ yay -Syy python-epc python-orjson python-sexpdata \
@@ -54,7 +58,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
     python-rapidfuzz python-watchdog python-packaging
 
   # Language Servers (etc)
-  $ yay -Syy gopls basedpyright
+  $ yay -Syy gopls basedpyright zls
 #+end_src
 
 * Fundamental things of my configuration
