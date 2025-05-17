@@ -22,6 +22,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 
 - ripgrep
 - fd
+- ttf-jetbrains-mono
 
 *** Python packages
 
@@ -44,7 +45,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
     python-six python-setuptools python-paramiko \
     python-rapidfuzz python-watchdog python-packaging \
     \ # System packages
-    ripgrep fd
+    ripgrep fd ttf-jetbrains-mono
 #+end_src
 
 * Fundamental things of my configuration
