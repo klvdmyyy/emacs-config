@@ -3,12 +3,16 @@ eln-cache
 eshell
 straight
 
+transient
+
 *.org
 *.el
 !readme.org
 !init.el
 !early-init.el
 
+.org-id-locations
+    
 tramp
 
 *~
