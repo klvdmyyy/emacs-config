@@ -366,40 +366,6 @@ I use =eat=
 
 #+end_src
 
-** In-region completion feature (Corfu feature)
-
-#+begin_src emacs-lisp
-  ;; Region completion
-  (eval-when-compile
-    (require 'corfu)
-    ;; (require 'corfu-candidate-overlay)
-    )
-
-  ;; Check it in source code
-  (autoload 'corfu-popupinfo-mode "corfu-popupinfo")
-
-  (with-eval-after-load 'corfu
-    (setq corfu-min-width 60)
-    (setq corfu-cycle t)
-    (setq corfu-quit-no-match t)
-
-    (setq corfu-auto t)
-
-    ;; (setq corfu-doc-auto t)
-    (setq corfu-popupinfo-auto t)
-
-    (add-hook 'corfu-mode-hook 'corfu-popupinfo-mode)
-
-    (define-key corfu-map (kbd "M-n") 'corfu-popupinfo-scroll-up)
-    (define-key corfu-map (kbd "M-p") 'corfu-popupinfo-scroll-down)
-    (define-key corfu-map (kbd "M-d") 'corfu-popupinfo-toggle))
-
-  (autoload 'global-corfu-mode "corfu")
-  (global-corfu-mode)
-
-  ;; (setq tab-always-indent 'complete)
-#+end_src
-
 ** LSP feature
 
 TODO
