@@ -399,6 +399,7 @@ I use =eat=
   go-mode
   zig-mode
   web-mode
+  nasm-mode
 #+end_src
 
 #+begin_src emacs-lisp
@@ -413,6 +414,9 @@ I use =eat=
 
   (autoload 'zig-mode "zig-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-mode))
+
+  (autoload 'nasm-mode "nasm-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
 #+end_src
 
 Associate =.tmpl= files with HTML
