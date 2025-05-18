@@ -44,6 +44,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 - gopls
 - basedpyright
 - zls
+- clang
 
 *** Python packages
 
@@ -70,7 +71,7 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
     python-rapidfuzz python-watchdog python-packaging
 
   # Language Servers (etc)
-  $ yay -Syy gopls basedpyright zls
+  $ yay -Syy gopls basedpyright zls clang
 #+end_src
 
 * Fundamental things of my configuration
@@ -465,7 +466,10 @@ Associate =.tmpl= files with HTML
   (with-eval-after-load 'lsp-bridge
     (add-hook 'python-mode-hook 'lsp-bridge-mode)
     (add-hook 'go-mode-hook 'lsp-bridge-mode)
-    (add-hook 'zig-mode-hook 'lsp-bridge-mode))
+    (add-hook 'zig-mode-hook 'lsp-bridge-mode)
+    (add-hook 'c-mode 'lsp-bridge-mode)
+    (add-hook 'c++-mode 'lsp-bridge-mode)
+    (add-hook 'c-or-c++-mode 'lsp-bridge-mode))
 #+end_src
 
 ** Git feature
