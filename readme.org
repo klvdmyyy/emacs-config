@@ -162,7 +162,8 @@ A lot of features inspired from [[https://git.sr.ht/~abcdw/rde][Guix RDE]]
 ** Installing packages
 
 #+begin_src emacs-lisp :noweb yes :noweb-prefix no
-  (setq my-packages '(<<packages>>
+  (setq my-packages '(
+<<packages>>
                         ))
 
   (dolist (package my-packages)
