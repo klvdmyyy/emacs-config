@@ -300,7 +300,7 @@ I use =eat=
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   mini-frame
-  ;; orderless
+  orderless
   marginalia
   ;; pcmpl-args
   ;; cape
@@ -320,7 +320,7 @@ I use =eat=
     (define-key global-map (kbd "M-y") 'consult-yank-pop)
     (define-key global-map (kbd "C-s") 'consult-line)
     (define-key global-map (kbd "C-x C-r") 'consult-recent-file)
-
+    
     (defun completion--mode-buffers (&rest modes)
       "Return a list of buffers that are derived from MODES in `buffer-list'."
       (cl-remove-if-not
@@ -328,6 +328,14 @@ I use =eat=
          (with-current-buffer buffer
            (cl-some 'derived-mode-p modes)))
        (buffer-list)))
+
+    (setq orderless-component-separator
+          'orderless-escapable-split-on-space) 
+
+    (require 'orderless)
+    (setq completion-styles '(orderless basic))
+    (setq completion-category-defaults nil)
+    (setq enable-recursive-minibuffers t)
     
     (with-eval-after-load
         'mini-frame
@@ -473,6 +481,19 @@ Associate =.tmpl= files with HTML
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-local-branches
                             'magit-insert-stashes))
+  (defvar magit-buffer-source
+    `(:name "Magit"
+            :narrow ?t
+            :category buffer
+            :state ,'consult--buffer-state
+            :items ,(lambda ()
+                      (mapcar 'buffer-name
+                              (completion--mode-buffers
+                               'magit-mode))))
+    "Source for Magit buffers to be set in `consult-buffer-sources'.")
+  (with-eval-after-load 'consult
+    (add-to-list 'consult-buffer-sources
+                 magit-buffer-source 'append))
 #+end_src
 
 ** Telegram feature
