@@ -403,7 +403,10 @@ I use =eat=
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   yuck-mode
-  scss-mode
+  (scss-mode
+   :type git
+   :host github
+   :repo "klvdmyyy/scss-mode")
   go-mode
   zig-mode
   web-mode
