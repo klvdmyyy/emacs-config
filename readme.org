@@ -16,6 +16,7 @@ Something like executable Wiki.
 - [ ] Complete completion configuring -_-
 - [ ] ~Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)~
 - [ ] Configure =telega.el= (Telegram Client)
+- [ ] Speed up LSP Bridge Mode
 
 Also I thinking about writing my own Guix distribution and move to it when my archlinux configuration has been complete
 
