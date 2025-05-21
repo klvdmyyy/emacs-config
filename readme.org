@@ -90,6 +90,12 @@ Setup default indentation.
   (setq indent-line-function 'insert-tab)
 #+end_src
 
+Setup input methods
+#+begin_src emacs-lisp
+  ;; (setq-default default-input-method "russian-computer")
+  (setq default-input-method "russian-computer")
+#+end_src
+
 Do some appearance stuff. Setup cursor and remove UI blobs
 #+begin_src emacs-lisp
   ;; Some appearance stuff
