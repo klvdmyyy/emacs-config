@@ -265,8 +265,8 @@ It contains all code related to *Org Mode*
 #+end_src
 
 #+begin_src emacs-lisp
-  (setq org-agenda-files
-        (directory-files-recursively "~/projects/org/" "\\.org$"))
+  ;; (setq org-agenda-files
+  ;;       (directory-files-recursively "~/projects/org/" "\\.org$"))
 #+end_src
 
 ** Terminal Emulator feature
@@ -323,7 +323,7 @@ I use =eat=
     (define-key global-map (kbd "M-y") 'consult-yank-pop)
     (define-key global-map (kbd "C-s") 'consult-line)
     (define-key global-map (kbd "C-x C-r") 'consult-recent-file)
-    
+
     (defun completion--mode-buffers (&rest modes)
       "Return a list of buffers that are derived from MODES in `buffer-list'."
       (cl-remove-if-not
@@ -339,7 +339,7 @@ I use =eat=
     (setq completion-styles '(orderless basic))
     (setq completion-category-defaults nil)
     (setq enable-recursive-minibuffers t)
-    
+
     (with-eval-after-load
         'mini-frame
       (custom-set-faces
@@ -367,10 +367,11 @@ I use =eat=
       ;;                      embark-bindings))
       )
 
-    (autoload 'mini-frame-mode "mini-frame")
-    (if after-init-time
-        (mini-frame-mode 1)
-      (add-hook 'after-init-hook 'mini-frame-mode)))
+    ;; Mini-frame is so laggy. Firstly I need to fix it =)
+    ;; (autoload 'mini-frame-mode "mini-frame")
+    ;; (if after-init-time
+    ;;     (mini-frame-mode 1)
+    ;;   (add-hook 'after-init-hook 'mini-frame-mode)))
 
   (with-eval-after-load 'marginalia
     (setq marginalia-align 'left))
@@ -414,6 +415,7 @@ I use =eat=
   zig-mode
   web-mode
   nasm-mode
+  cmake-mode
 #+end_src
 
 #+begin_src emacs-lisp
@@ -431,6 +433,13 @@ I use =eat=
 
   (autoload 'nasm-mode "nasm-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.nasm\\'" . nasm-mode))
+
+  (autoload 'cmake-mode "cmake-mode" nil t)
+  (setq auto-mode-alist
+        (append
+         '(("CMakeLists\\.txt\\'" . cmake-mode)
+           ("\\.cmake\\'" . cmake-mode))
+         auto-mode-alist))
 #+end_src
 
 Associate =.tmpl= files with HTML
