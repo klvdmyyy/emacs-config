@@ -12,9 +12,9 @@ Something like executable Wiki.
   - [ ] Org Agenda
   - [ ] Org Babel
   - [ ] Org Contacts
-- [ ] Configure mini-frame (it works laggy)
+- [ ] +Configure mini-frame (it works laggy)+ (I completely remove it)
 - [ ] Complete completion configuring -_-
-- [ ] ~Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)~
+- [ ] +Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)+ (I don't use matrix)
 - [ ] Configure =telega.el= (Telegram Client)
 - [ ] Speed up LSP Bridge Mode
 
@@ -302,7 +302,7 @@ I use =eat=
 ** Completion feature
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
-  mini-frame
+  ;; mini-frame
   orderless
   marginalia
   ;; pcmpl-args
@@ -338,40 +338,7 @@ I use =eat=
     (require 'orderless)
     (setq completion-styles '(orderless basic))
     (setq completion-category-defaults nil)
-    (setq enable-recursive-minibuffers t)
-
-    (with-eval-after-load
-        'mini-frame
-      (custom-set-faces
-       '(child-frame-border
-         ;; TODO: inherit ,(face-attribute 'default :foreground)
-         ((t (:background "#000000")))))
-      (put 'child-frame-border 'saved-face nil)
-
-      (setq
-       mini-frame-show-parameters
-       `((top . 0.2)
-         (width . 0.8)
-         (left . 0.5)
-         (child-frame-border-width . 1)))
-      (setq mini-frame-detach-on-hide nil)
-      (setq mini-frame-color-shift-step 0)
-      (setq mini-frame-advice-functions
-            '(read-from-minibuffer
-              read-key-sequence
-              save-some-buffers yes-or-no-p))
-      ;; (setq mini-frame-ignore-commands
-      ;;       '(consult-line consult-line-multi consult-outline
-      ;;                      consult-imenu consult-imenu-multi consult-history
-      ;;                      consult-git-grep consult-ripgrep consult-grep
-      ;;                      embark-bindings))
-      )
-
-    ;; Mini-frame is so laggy. Firstly I need to fix it =)
-    ;; (autoload 'mini-frame-mode "mini-frame")
-    ;; (if after-init-time
-    ;;     (mini-frame-mode 1)
-    ;;   (add-hook 'after-init-hook 'mini-frame-mode)))
+    (setq enable-recursive-minibuffers t))
 
   (with-eval-after-load 'marginalia
     (setq marginalia-align 'left))
