@@ -7,8 +7,10 @@ url
     
 transient
 
+recentf
+
 *.org
-*.el
+readme.el
 !readme.org
 !init.el
 !early-init.el
