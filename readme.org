@@ -7,6 +7,8 @@
 - =C-x p f= - Find files in project with =project-find-file=
 - =s-B= - Switch buffer with =consult-buffer=
 - =C-s= - Find text in file with =consult-line=
+- (corfu-mode-map) =M-n=, =M-p= - Scroll in-region completion docs
+- (corfu-mode-map) =M-d= - Toggle corfu docs
 - (org-mode-map) =C-s= - Jumping between headings in org mode with =consult-org-heading=
 
 * Modules
