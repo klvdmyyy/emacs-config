@@ -29,22 +29,20 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 
 - ripgrep
 - fd
-- ttf-jetbrains-mono
+- jetbrains-mono-fonts
 - git
 - go
-- zig
+- zig (UNNECESSARY)
 - python
+- zsh
+- ccmake
 - make
-- gperf
-- cmake
-- pkg-config
-- telegram-tdlib
 
 *** Language servers (etc)
 
 - gopls
-- basedpyright
-- zls
+- basedpyright (PYTHON PACKAGE)
+- zls (UNNECESSARY)
 - clang
 
 *** Python packages
@@ -62,17 +60,14 @@ Also I thinking about writing my own Guix distribution and move to it when my ar
 ** Installation
 
 #+begin_src sh
-  # System packages
-  $ yay -Syy python go zig ripgrep fd ttf-jetbrains-mono git \
-    make cmake gperf pkg-config telegram-tdlib
+  # DNF5 packages
+  $ sudo dnf install python go ripgrep fd \
+    jetbrains-mono-fonts git zsh gopls clang \
+    ccmake make
 
   # Python packages
-  $ yay -Syy python-epc python-orjson python-sexpdata \
-    python-six python-setuptools python-paramiko \
-    python-rapidfuzz python-watchdog python-packaging
-
-  # Language Servers (etc)
-  $ yay -Syy gopls basedpyright zls clang
+  $ pip install --user basedpyright epc orjson sexpdata six \
+    setuptools paramiko rapidfuzz watchdog packaging
 #+end_src
 
 * Fundamental things of my configuration
