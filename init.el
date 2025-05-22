@@ -43,7 +43,7 @@
     "tweaks"
     "appearance"
     "completion"
-    "knowledgebase"
+    "productivity"
     "development"))
 
 (defun load-user-module (module)

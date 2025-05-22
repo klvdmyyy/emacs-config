@@ -37,7 +37,6 @@
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'prog-mode-hook 'smartparens-strict-mode)
 
-
 (dolist (mode '(emacs-lisp-mode
                 lisp-mode
                 common-lisp-mode

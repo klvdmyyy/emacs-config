@@ -32,7 +32,9 @@
   (with-eval-after-load 'consult
     (global-set-key (kbd "s-B") 'consult-buffer)
     (global-set-key (kbd "C-s") 'consult-line)
-    (define-key org-mode-map (kbd "C-s") 'consult-org-heading))
+
+    (with-eval-after-load 'org
+      (define-key org-mode-map (kbd "C-s") 'consult-org-heading)))
 
   (with-eval-after-load 'marginalia
     (setq marginalia-max-relative-age 0
@@ -43,7 +45,13 @@
     (setq completion-styles '(orderless basic))))
 
 (with-eval-after-load 'vertico
-  (vertico-mode 1))
+  ;; [TODO] Vertico configuration and don't forgot about extensions
+  )
+
+(autoload 'vertico-mode "vertico")
+(if after-init-time
+    (vertico-mode 1)
+  (add-hook 'after-init-hook 'vertico-mode))
 
 (with-eval-after-load 'all-the-icons-completion
   (add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
