@@ -16,7 +16,8 @@
                    consult
                    orderless
                    marginalia
-                   vertico))
+                   vertico
+                   corfu))
   (straight-use-package package))
 
 (eval-when-compile
@@ -24,7 +25,8 @@
   (require 'vertico)
   (require 'consult)
   (require 'marginalia)
-  (require 'orderless))
+  (require 'orderless)
+  (require 'corfu))
 
 (with-eval-after-load 'minibuffer
   (with-eval-after-load 'consult
@@ -46,6 +48,25 @@
 (with-eval-after-load 'all-the-icons-completion
   (add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
   (all-the-icons-completion-mode 1))
+
+(with-eval-after-load 'corfu
+  (setq corfu-min-width 60)
+  (setq corfu-cycle t)
+  (setq corfu-quit-no-match t)
+
+  (setq corfu-auto t)
+
+  ;; (setq corfu-doc-auto t)
+  (setq corfu-popupinfo-auto t)
+
+  (add-hook 'corfu-mode-hook 'corfu-popupinfo-mode)
+
+  (define-key corfu-map (kbd "M-n") 'corfu-popupinfo-scroll-up)
+  (define-key corfu-map (kbd "M-p") 'corfu-popupinfo-scroll-down)
+  (define-key corfu-map (kbd "M-d") 'corfu-popupinfo-toggle))
+
+(autoload 'global-corfu-mode "corfu")
+(global-corfu-mode)
 
 (provide 'completion)
 
