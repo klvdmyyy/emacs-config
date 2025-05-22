@@ -22,6 +22,7 @@
   (straight-use-package package))
 
 (eval-when-compile
+  (require 'eglot)
   (require 'eat)
   (require 'smartparens)
   (require 'magit))
@@ -63,6 +64,29 @@
   (global-set-key (kbd "s-e") 'eat)
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
+
+(with-eval-after-load 'eglot
+  ;; TODO
+  )
+
+(let ((clangd (executable-find "clangd"))
+      (gopls (executable-find "gopls")))
+  ;; Configure C/C++
+  (when clangd
+    ;; [TODO] clangd already configured and this section of code should be in `with-eval-after-load'
+    ;; (add-to-list 'eglot-server-programs
+    ;;              `((c-mode c-ts-mode c++-mode c++-ts-mode) . ,clangd))
+    (dolist (mode '(c-mode-hook
+                    c-ts-mode-hook
+                    c++-mode-hook
+                    c++-ts-mode-hook))
+      (add-hook mode 'eglot-ensure)))
+
+  ;; Configure Go
+  (when gopls
+    (dolist (mode '(go-mode-hook
+                    go-ts-mode-hook))
+      (add-hook mode 'eglot-ensure))))
 
 (provide 'development)
 
