@@ -4,13 +4,15 @@ eshell
 straight
 
 url
-    
+
 transient
 
 recentf
 
 projects
-    
+
+games
+
 *.org
 readme.el
 !readme.org
@@ -18,7 +20,7 @@ readme.el
 !early-init.el
 
 .org-id-locations
-    
+
 tramp
 
 *~
