@@ -273,11 +273,13 @@ It contains all code related to *Org Mode*
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   ;; org-contacts ; For contacts management (`mu4e-contacts' - alternative)
   ;; mu4e-contacts ; Alternative: `org-contacts'
+  ;; org-alert ;; TODO: Setup notifications
 #+end_src
 
+Setup agenda files
 #+begin_src emacs-lisp
-  ;; (setq org-agenda-files
-  ;;       (directory-files-recursively "~/projects/org/" "\\.org$"))
+  (setq org-agenda-files
+        (directory-files-recursively "~/Projects/Org/" "\\.org$"))
 #+end_src
 
 ** Terminal Emulator feature
@@ -307,6 +309,7 @@ I use =eat=
     (require 'eat))
 
   (with-eval-after-load 'eat
+    (setq eat-shell "/bin/zsh")
     (global-set-key (kbd "s-e") 'eat)
     (add-hook 'eshell-load-hook #'eat-eshell-mode)
     (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
