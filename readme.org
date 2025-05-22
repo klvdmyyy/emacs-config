@@ -28,7 +28,9 @@ TODO
 
 * TODO Roadmap
 
-- [ ] Setup completion with Corfu
+- [X] Setup completion with Corfu
+- [ ] Make completion more beatifully
+- [ ] Tweak performance with all modules (todo: read about profiling)
 - [ ] Setup LSP with eglot
   - [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
   - [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Something like bridge between eglot and lsp-booster

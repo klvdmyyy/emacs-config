@@ -63,7 +63,10 @@
 
   (define-key corfu-map (kbd "M-n") 'corfu-popupinfo-scroll-up)
   (define-key corfu-map (kbd "M-p") 'corfu-popupinfo-scroll-down)
-  (define-key corfu-map (kbd "M-d") 'corfu-popupinfo-toggle))
+  (define-key corfu-map (kbd "M-d") 'corfu-popupinfo-toggle)
+
+  (dolist (mode '(org-mode-hook))
+    (add-hook mode (lambda () (corfu-mode 0)))))
 
 (autoload 'global-corfu-mode "corfu")
 (global-corfu-mode)
