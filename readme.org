@@ -298,11 +298,13 @@ I use =eat=
   ;;
   ;; I use `eat' only for integration with eshell
   ;;
-  (autoload 'eat "eat") ; Check in source code
-  (autoload 'eat-eshell-mode "eat") ; Check in source code
-  (autoload 'eat-eshell-visual-command-mode "eat") ; Check in source code
-  (add-hook 'eshell-load-hook #'eat-eshell-mode)
-  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+  (eval-when-compile
+    (require 'eat))
+
+  (with-eval-after-load 'eat
+    (global-set-key (kbd "s-e") 'eat)
+    (add-hook 'eshell-load-hook #'eat-eshell-mode)
+    (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 #+end_src
 
 ** Completion feature
