@@ -5,7 +5,7 @@
 ;;; Code:
 
 (setq make-backup-files nil)
-(setq native-comp-async-report-warnings-errors 'silent)
+;;(setq native-comp-async-report-warnings-errors 'silent)
 
 (recentf-mode 1)
 
