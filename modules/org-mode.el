@@ -1,4 +1,4 @@
-;;; org.el --- Emacs org and org agenda configuration
+;;; org-mode.el --- Emacs org and org agenda configuration
 ;;
 ;;; Commentary:
 ;;
@@ -8,6 +8,6 @@
                 visual-line-mode))
   (add-hook 'org-mode-hook mode))
 
-(provide 'org)
+(provide 'org-mode)
 
-;;; org.el ends here
+;;; org-mode.el ends here

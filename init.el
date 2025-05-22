@@ -52,7 +52,7 @@
   '("gcmh"
     "input-methods"
     "appearance"
-    "org"
+    "org-mode"
     "smartparens"
     "terminal"
     "helm"))
