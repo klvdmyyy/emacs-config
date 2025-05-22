@@ -2,7 +2,7 @@
 #+author: Dmitry Klementiev
 #+email: klementievd08@yandex.ru
 
-[[./emacsimage.png]]
+[[./assets/screenshot1.png]]
 
 * Keybindings
 
