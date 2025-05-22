@@ -14,8 +14,6 @@ Something like executable Wiki.
   - [ ] Org Contacts
 - [ ] +Configure mini-frame (it works laggy)+ (I completely remove it)
 - [ ] Complete completion configuring -_-
-- [ ] +Configure =ement.el= (Matrix Client. Maybe used as telegram-bridge)+ (I don't use matrix)
-- [ ] Configure =telega.el= (Telegram Client)
 - [ ] Speed up LSP Bridge Mode
 
 Also I thinking about writing my own Guix distribution and move to it when my archlinux configuration has been complete
@@ -490,37 +488,4 @@ Associate =.tmpl= files with HTML
   (with-eval-after-load 'consult
     (add-to-list 'consult-buffer-sources
                  magit-buffer-source 'append))
-#+end_src
-
-** Telegram feature
-
-Emacs Lisp Dependencies
-#+begin_src emacs-lisp :tangle no :noweb-ref packages
-  visual-fill-column
-  rainbow-identifiers
-#+end_src
-
-Telegram Client package
-#+begin_src emacs-lisp :tangle no :noweb-ref packages
-  telega
-#+end_src
-
-#+begin_src emacs-lisp
-  (require 'telega)
-  (setq telega-server-libs-prefix "/usr")
-
-  (defvar telega-buffer-source
-    `(:name "Telega"
-            :narrow ?t
-            :category buffer
-            :state ,'consult--buffer-state
-            :items ,(lambda ()
-                      (mapcar 'buffer-name
-                              (completion--mode-buffers
-                               'telega-chat-mode
-                               'telega-root-mode))))
-    "Source for Telega buffers to be set in `consult-buffer-sources'.")
-  (with-eval-after-load 'consult
-    (add-to-list 'consult-buffer-sources
-                 telega-buffer-source 'append))
 #+end_src
