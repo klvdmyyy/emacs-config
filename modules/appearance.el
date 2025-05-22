@@ -44,7 +44,8 @@
   		        eshell-mode-hook
                 org-agenda-mode-hook
                 eat-mode-hook
-                org-agenda-mode-hook))
+                org-agenda-mode-hook
+                dired-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (dolist (package '(;; Themes
