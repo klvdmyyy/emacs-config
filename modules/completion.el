@@ -63,7 +63,7 @@
   (setq corfu-quit-no-match t)
 
   (setq corfu-auto t)
-  (setq corfu-auto-delay 0.3)
+  (setq corfu-auto-delay 0.1)
 
   ;; (setq corfu-doc-auto t)
   (setq corfu-popupinfo-auto t)

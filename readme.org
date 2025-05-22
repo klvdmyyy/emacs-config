@@ -36,3 +36,4 @@ TODO
 - [X] Setup LSP with eglot
 - [ ] [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Smoething like bridge between eglot and lsp-booster
   - [ ] [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
+- [ ] Check =corfu-auto-delay=. Is it boost performance or not ?!
