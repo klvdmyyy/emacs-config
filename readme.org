@@ -2,6 +2,8 @@
 #+author: Dmitry Klementiev
 #+email: klementievd08@yandex.ru
 
+[[./emacsimage.png]]
+
 * Keybindings
 
 - =C-x p f= - Find files in project with =project-find-file=
