@@ -28,6 +28,7 @@ TODO
 
 * TODO Roadmap
 
+- [ ] Customize default Emacs modeline
 - [X] Setup completion with Corfu
 - [ ] Make completion more beatifully
 - [ ] Tweak performance with all modules (todo: read about profiling)
