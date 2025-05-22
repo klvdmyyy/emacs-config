@@ -16,15 +16,23 @@
                    helm))
   (straight-use-package package))
 
+
+(defconst helm-keybindings-alist
+  '(("M-x" . helm-M-x)
+    ("C-x C-f" . helm-find-files)
+    ("s-B" . helm-buffers-list)
+    ("C-s" . helm-outline)))
+
 (eval-when-compile
   (require 'all-the-icons)
   (require 'wgrep)
   (require 'helm))
 
 (with-eval-after-load 'helm
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "s-B") 'helm-buffers-list)
+  (dolist (kc helm-keybindings-alist)
+    (let ((key (car kc))
+          (cmd (cdr kc)))
+      (global-set-key (kbd key) cmd)))
   (helm-mode 1))
 
 (provide 'helm)
