@@ -45,15 +45,15 @@
   (sp-local-pair mode "'" nil :when '(sp-in-string-p))
   (sp-local-pair mode "`" nil :when '(sp-in-string-p)))
 
-(defun indent-between-pair (&rest _ignored)
-  "Insert indentation between pairs. Used with smartparens"
-  (newline)
-  (indent-according-to-mode)
-  (forward-line -1)
-  (indent-according-to-mode))
+;; (defun indent-between-pair (&rest _ignored)
+;;   "Insert indentation between pairs. Used with smartparens"
+;;   (newline)
+;;   (indent-according-to-mode)
+;;   (forward-line -1)
+;;   (indent-according-to-mode))
 
-(dolist (char '("{" "(" "["))
-  (sp-local-pair 'prog-mode char nil :post-handlers '((indent-between-pair "RET"))))
+;; (dolist (char '("{" "(" "["))
+;;   (sp-local-pair 'prog-mode char nil :post-handlers '((indent-between-pair "RET"))))
 
 (with-eval-after-load 'eat
   (let ((zsh (executable-find "zsh")))
@@ -66,8 +66,8 @@
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
 (with-eval-after-load 'eglot
-  ;; TODO
-  )
+  ;; By default '(:size 2000000 :format full)
+  (setq eglot-events-buffer-config '(:size 0 :format full)))
 
 (let ((clangd (executable-find "clangd"))
       (gopls (executable-find "gopls")))
