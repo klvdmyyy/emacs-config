@@ -23,3 +23,10 @@
 ** Could be loaded with =load-user-module=
 
 TODO
+
+* TODO Roadmap
+
+- [ ] Setup completion with Corfu
+- [ ] Setup LSP with eglot
+  - [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
+  - [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Something like bridge between eglot and lsp-booster
