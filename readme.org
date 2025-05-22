@@ -83,6 +83,11 @@ Remove backup files. Remove warnings and errors from native compilation
   (setq native-comp-async-report-warnings-errors 'silent)
 #+end_src
 
+Enable recentf mode
+#+begin_src emacs-lisp
+  (recentf-mode 1)
+#+end_src
+
 Setup default indentation.
 #+begin_src emacs-lisp
   (setq-default indent-tabs-mode nil)
