@@ -174,7 +174,7 @@ A lot of features inspired from [[https://git.sr.ht/~abcdw/rde][Guix RDE]]
     (straight-use-package package))
 #+end_src
 
-** Appearance feature
+** feature-appearance
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   ;; kaolin-themes
@@ -210,7 +210,7 @@ I think =rainbow-mode= should be only in CSS/SCSS code (and =web-mode=)
   (add-hook 'web-mode-hook 'rainbow-mode)
 #+end_src
 
-** Smartparens feature
+** feature-smartparens
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   smartparens
@@ -244,7 +244,7 @@ I think =rainbow-mode= should be only in CSS/SCSS code (and =web-mode=)
   (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))
 #+end_src
 
-** Org feature
+** feature-org
 
 It contains all code related to *Org Mode*
 
@@ -275,7 +275,7 @@ Setup agenda files
         (directory-files-recursively "~/Projects/Org/" "\\.org$"))
 #+end_src
 
-** Terminal Emulator feature
+** feature-terminal-emulator feature-eat
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   (eat :type git
@@ -308,7 +308,7 @@ I use =eat=
     (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 #+end_src
 
-** Completion feature
+** feature-completion feature-consult feature-marginalia
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   ;; mini-frame
@@ -356,7 +356,7 @@ I use =eat=
   (marginalia-mode 1)
 #+end_src
 
-** Vertico feature
+** feature-vertico
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   vertico
@@ -427,7 +427,7 @@ Associate =.tmpl= files with HTML
   (add-hook 'web-mode-hook (lambda () (smartparens-mode 0)))
 #+end_src
 
-** LSP feature
+** feature-lsp feature-lsp-mode feature-lsp-bridge
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   markdown-mode
@@ -459,7 +459,7 @@ Associate =.tmpl= files with HTML
     (add-hook 'c-or-c++-mode 'lsp-bridge-mode))
 #+end_src
 
-** Git feature
+** feature-git feature-magit
 
 #+begin_src emacs-lisp :tangle no :noweb-ref packages
   magit
