@@ -31,6 +31,7 @@ TODO
 - [X] Setup completion with Corfu
 - [ ] Make completion more beatifully
 - [ ] Tweak performance with all modules (todo: read about profiling)
+  - [ ] Read about usage of =autoload=, =with-eval-after-load=, =eval-when-compile= and tweak all configuration
 - [X] Setup LSP with eglot
 - [ ] [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Smoething like bridge between eglot and lsp-booster
   - [ ] [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
