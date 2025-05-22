@@ -49,7 +49,8 @@
 
 ;; Load modules
 (defconst modules-list
-  '("input-methods"
+  '("gcmh"
+    "input-methods"
     "appearance"
     "org"
     "smartparens"
