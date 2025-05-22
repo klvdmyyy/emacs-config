@@ -4,7 +4,7 @@
 ;;
 ;;; Code:
 
-(set-default 'cursor-type '(bar . 1))
+(set-default 'cursor-type '(bar . 2))
 (blink-cursor-mode 0)
 
 (setq-default cursor-in-non-selected-windows nil)
@@ -37,27 +37,41 @@
 
 (column-number-mode)
 ;;(setq display-line-numbers-type 'relative) ; CHECKTHIS
-(global-display-line-numbers-mode t)
+(global-display-line-numbers-mode 1)
 
 (dolist (mode '(org-mode-hook
-  		      term-mode-hook
-  		      eshell-mode-hook
+  		        term-mode-hook
+  		        eshell-mode-hook
                 org-agenda-mode-hook
                 eat-mode-hook
                 org-agenda-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
-(dolist (package '(solarized-theme
+(dolist (package '(;; Themes
+                   solarized-theme
+                   ef-themes
+                   dracula-theme
+                   sublime-themes
+                   doom-themes
+
+                   ;; Other appearance related packages
+                   doom-modeline
                    rainbow-delimiters
                    rainbow-mode))
   (straight-use-package package))
 
 (eval-when-compile
-  (require 'solarized-theme)
+  ;; (require 'solarized-theme)
+  ;; (require 'ef-themes)
+  ;; (require 'dracula-theme)
+  ;; (require 'sublime-themes)
+  (require 'doom-themes)
+  ;; [TODO] Setup modeline
+  ;; (require 'doom-modeline)
   (require 'rainbow-delimiters)
   (require 'rainbow-mode))
 
-(load-theme 'solarized-light t nil)
+(load-theme 'doom-one t nil)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (autoload 'rainbow-mode "rainbow-mode")

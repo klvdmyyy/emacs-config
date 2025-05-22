@@ -1,0 +1,6 @@
+#+title: My GNU Emacs configuration
+#+author: Dmitry Klementiev
+#+email: klementievd08@yandex.ru
+
+Dependencies:
+- fuzzy-find

@@ -9,6 +9,8 @@ transient
 
 recentf
 
+projects
+    
 *.org
 readme.el
 !readme.org

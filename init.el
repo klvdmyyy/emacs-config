@@ -50,12 +50,15 @@
 ;; Load modules
 (defconst modules-list
   '("gcmh"
+    ;; I don't use evil mode for now (but I maybe move)
+    ;; "evil"
     "input-methods"
     "appearance"
     "org-mode"
     "smartparens"
     "terminal"
-    "helm"))
+    "git"
+    "completion"))
 
 (defun load-user-module (module)
   (interactive "sModule name: ")
