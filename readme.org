@@ -1,6 +1,25 @@
-#+title: My GNU Emacs configuration
+#+title: My GNU Emacs
 #+author: Dmitry Klementiev
 #+email: klementievd08@yandex.ru
 
-Dependencies:
-- fuzzy-find
+* Keybindings
+
+- =C-x p f= - Find files in project with =project-find-file=
+- =s-B= - Switch buffer with =consult-buffer=
+- =C-s= - Find text in file with =consult-line=
+- (org-mode-map) =C-s= - Jumping between headings in org mode with =consult-org-heading=
+
+* Modules
+
+** Autoloaded
+
+- Core - Basic GNU Emacs setup
+- Tweaks - GNU Emacs tweaking (performance, gc, etc)
+- Appearance - UI related things
+- Completion - Completion related things
+- Productivity - Basically it's just Org Mode
+- Development - Git, Terminal, Editing, etc
+
+** Could be loaded with =load-user-module=
+
+TODO

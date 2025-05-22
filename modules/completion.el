@@ -20,53 +20,32 @@
   (straight-use-package package))
 
 (eval-when-compile
-  (require 'consult)
+  (require 'all-the-icons-completion)
   (require 'vertico)
-  (require 'orderless)
+  (require 'consult)
   (require 'marginalia)
-  (require 'all-the-icons)
-  (require 'all-the-icons-completion))
+  (require 'orderless))
 
-(with-eval-after-load
-    'minibuffer
+(with-eval-after-load 'minibuffer
   (with-eval-after-load 'consult
     (global-set-key (kbd "s-B") 'consult-buffer)
-    (global-set-key (kbd "C-s") 'consult-line))
+    (global-set-key (kbd "C-s") 'consult-line)
+    (define-key org-mode-map (kbd "C-s") 'consult-org-heading))
 
   (with-eval-after-load 'marginalia
     (setq marginalia-max-relative-age 0
-          marginalia-align 'right) ; or `left' or `center'
+          marginalia-align 'left)
     (marginalia-mode 1))
 
-  (with-eval-after-load 'all-the-icons-completion
-    (add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
-    (all-the-icons-completion-mode 1))
-
-  (with-eval-after-load 'vertico
-    (setq vertico-count 13
-          vertico-resize t
-          vertico-cycle nil)
-    (vertico-mode 1))
-
   (with-eval-after-load 'orderless
-    (setq completion-styles '(orderless basic)
-          enable-recursive-minibuffers t
-          completion-category-defaults nil
-          completion-category-overrides
-          '((file (styles basic-remote
-                          orderless))))
+    (setq completion-styles '(orderless basic))))
 
-    (setq orderless-matching-styles
-          '(orderless-literal
-            orderless-prefixes
-            orderless-initialism
-            orderless-regexp
-            ;; orderless-flex ; Basically fuzzy finding
-            ;; orderless-strict-leading-initialism
-            ;; orderless-strict-initialism
-            ;; orderless-strict-full-initialism
-            ;; orderless-without-literal ; Recommended for dispatches instead
-            ))))
+(with-eval-after-load 'vertico
+  (vertico-mode 1))
+
+(with-eval-after-load 'all-the-icons-completion
+  (add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
+  (all-the-icons-completion-mode 1))
 
 (provide 'completion)
 

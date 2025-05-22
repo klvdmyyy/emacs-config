@@ -8,15 +8,6 @@
 ;;
 ;;; Code:
 
-(setq make-backup-files nil)
-(setq native-comp-async-report-warnings-errors 'silent)
-
-(recentf-mode 1)
-
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
-
 ;; Setup user init directory
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
@@ -47,18 +38,13 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Load modules
 (defconst modules-list
-  '("gcmh"
-    ;; I don't use evil mode for now (but I maybe move)
-    ;; "evil"
-    "input-methods"
+  '("core"
+    "tweaks"
     "appearance"
-    "org-mode"
-    "smartparens"
-    "terminal"
-    "git"
-    "completion"))
+    "completion"
+    "knowledgebase"
+    "development"))
 
 (defun load-user-module (module)
   (interactive "sModule name: ")
