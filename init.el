@@ -47,14 +47,14 @@
     "development"))
 
 (defun load-user-module (module)
-  (interactive "sModule name: ")
-  "Load user module.
+  "Load user module from config.
 
 Modules should be string value (module name). Module name has beed concatenated with
 `user-init-dir', modules/ subdirectory and .el suffix
 
 Smth like pipeline:
 `user-init-dir' + `modules/' + module name + `.el'"
+  (interactive "sModule name: ")
   (let ((file (concat user-init-dir "modules/" module ".el")))
     (load-file file)))
 
