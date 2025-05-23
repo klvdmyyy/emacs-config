@@ -66,8 +66,8 @@
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
 (with-eval-after-load 'eglot
-  ;; By default '(:size 2000000 :format full)
-  (setq eglot-events-buffer-config '(:size 0 :format full)))
+  ;; TODO
+  )
 
 (let ((clangd (executable-find "clangd"))
       (gopls (executable-find "gopls")))

@@ -13,7 +13,12 @@
 (with-eval-after-load 'gcmh
   (gcmh-mode 1))
 
-(fset #'jsonrpc--log-event #'ignore)    ; Maybe good option for making Eglot faster
+;; Maybe good options for making Eglot faster
+(setq jsonrpc-event-hook nil)
+(fset #'jsonrpc--log-event #'ignore)
+
+;; By default '(:size 2000000 :format full)
+(setq eglot-events-buffer-config '(:size 0 :format full))
 
 (provide 'tweaks)
 
