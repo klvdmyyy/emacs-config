@@ -44,6 +44,7 @@ TODO
 - [X] Setup LSP with eglot
 - [ ] [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Smoething like bridge between eglot and lsp-booster
   - [ ] [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
+- [ ] [FIX] Indentation in commit_msg, gitignore and etc (insert stupid tabs on enter/return key)
 - [ ] Check =corfu-auto-delay=. Is it boost performance or not ?!
 - [ ] Setup email client
 - [ ] Update git setup (check guix rde)
