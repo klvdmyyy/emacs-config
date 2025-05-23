@@ -32,6 +32,7 @@
   (with-eval-after-load 'consult
     (global-set-key (kbd "s-B") 'consult-buffer)
     (global-set-key (kbd "C-s") 'consult-line)
+    (global-set-key (kbd "C-c a") 'consult-org-agenda)
 
     (with-eval-after-load 'org
       (define-key org-mode-map (kbd "C-s") 'consult-org-heading)))
