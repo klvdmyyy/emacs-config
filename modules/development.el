@@ -60,7 +60,7 @@
   (indent-according-to-mode))
 
 ;; [FIX] I think it's so stupid fix of indentation. I need smth else maybe...
-(dolist (mode '(go-mode-hook))
+(dolist (mode '(go-mode))
  (dolist (char '("{" "(" "["))
   (sp-local-pair mode char nil :post-handlers '((indent-between-pair "RET")))))
 
