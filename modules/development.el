@@ -2,6 +2,13 @@
 ;;
 ;;; Commentary:
 ;;
+;; Development module. Configuration for development.
+;;
+;; Supported languages:
+;; - C
+;; - Go
+;; - C++
+;;
 ;;; Code:
 
 (setq-default indent-tabs-mode nil)
@@ -17,7 +24,8 @@
                                 "*.ti" ("terminfo/e" "terminfo/e/*")
                                 ("terminfo/65" "terminfo/65/*")
                                 ("integration" "integration/*")
-                                (:exclude ".dir-locals.el" "*-tests.el")))))
+                                (:exclude ".dir-locals.el" "*-tests.el")))
+                   go-mode))
   (straight-use-package package))
 
 (eval-when-compile
@@ -86,6 +94,10 @@
     (dolist (mode '(go-mode-hook
                     go-ts-mode-hook))
       (add-hook mode 'eglot-ensure))))
+
+;; Configure specific modes
+(autoload 'go-mode "go-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
 (provide 'development)
 
