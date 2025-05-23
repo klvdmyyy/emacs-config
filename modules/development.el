@@ -8,7 +8,6 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-
 (dolist (package '(magit
                    smartparens
                    (eat :type git
