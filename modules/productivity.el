@@ -14,9 +14,9 @@
   (add-hook 'org-mode-hook mode))
 
 (setq org-agenda-files
-      '("~/Projects/Org/Tasks.org"
-        "~/Projects/Org/Birthdays.org"
-        ;;"~/Projects/Org/Habits.org"
+      '("~/Projects/OrgFiles/Tasks.org"
+        "~/Projects/OrgFiles/Birthdays.org"
+        ;;"~/Projects/OrgFiles/Habits.org"
         ))
 
 (provide 'productivity)
