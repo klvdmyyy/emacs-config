@@ -1,6 +1,6 @@
-#+title: My GNU Emacs
-#+author: Dmitry Klementiev
-#+email: klementievd08@yandex.ru
+#+TITLE: My GNU Emacs configuration/distribution
+#+AUTHOR: Dmitry Klementiev
+#+EMAIL: klementievd08@yandex.ru
 
 [[./assets/screenshot1.png]]
 

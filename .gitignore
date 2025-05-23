@@ -13,9 +13,8 @@ projects
 
 games
 
-*.org
 readme.el
-!readme.org
+!README.org
 !init.el
 !early-init.el
 
