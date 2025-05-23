@@ -34,7 +34,7 @@ Currently my main system is Fedora GNU/Linux distribution with GNOME
 
 TODO
 
-* TODO Roadmap
+* Roadmap
 
 - [ ] Customize default Emacs modeline
 - [X] Setup completion with Corfu
@@ -45,3 +45,6 @@ TODO
 - [ ] [[https://github.com/jdtsmith/eglot-booster][eglot-booster]] - Smoething like bridge between eglot and lsp-booster
   - [ ] [[https://github.com/blahgeek/emacs-lsp-booster][lsp-booster]] - LSP mode booster
 - [ ] Check =corfu-auto-delay=. Is it boost performance or not ?!
+- [ ] Setup email client
+- [ ] Update git setup (check guix rde)
+- [ ] Add spell checking (en, ru)
