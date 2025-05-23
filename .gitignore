@@ -13,6 +13,8 @@ projects
 
 games
 
+tree-sitter/
+
 readme.el
 !README.org
 !init.el
