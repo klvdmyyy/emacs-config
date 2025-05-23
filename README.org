@@ -49,3 +49,4 @@ TODO
 - [ ] Setup email client
 - [ ] Update git setup (check guix rde)
 - [ ] Add spell checking (en, ru)
+- [ ] [QSTN] Maybe remove =eat= terminal emulator ?!
