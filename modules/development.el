@@ -9,6 +9,7 @@
 ;; - C/C++
 ;; - Python
 ;; - Go
+;; - SQL
 ;;
 ;; Other interesting languages (unsupported):
 ;; - Zig/Rust
@@ -16,6 +17,9 @@
 ;; - Guile
 ;; - Clojure
 ;; - Common Lisp
+;; - Ruby
+;; - Haskell
+;; - OCaml
 ;;
 ;;; Code:
 
@@ -132,6 +136,7 @@
 
 ;; Configure specific modes
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.sql\\'" . sql-mode))
 
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
