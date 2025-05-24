@@ -8,6 +8,7 @@
 ;; - C
 ;; - Go
 ;; - C++
+;; - Python
 ;;
 ;;; Code:
 
@@ -79,7 +80,16 @@
   )
 
 (let ((clangd (executable-find "clangd"))
-      (gopls (executable-find "gopls")))
+      (gopls (executable-find "gopls"))
+
+      ;; Language servers and Static type checkers for python.
+      ;;
+      ;; One of the best is `basedpyright' it is a fork of `pyright' (also cool)
+      ;;
+      ;; Basic `pylsp' (`python3-lsp-server' or `python-language-server' in Fedora GNU/Linux)
+      (pls (or (executable-find "basedbyright")
+               (executable-find "pyright")
+               (executable-find "pylsp"))))
   ;; Configure C/C++
   (when clangd
     ;; [TODO] clangd already configured and this section of code should be in `with-eval-after-load'
@@ -95,6 +105,12 @@
   (when gopls
     (dolist (mode '(go-mode-hook
                     go-ts-mode-hook))
+      (add-hook mode 'eglot-ensure)))
+
+  ;; Configure Python
+  (when pls
+    (dolist (mode '(python-mode-hook
+                    python-ts-mode-hook))
       (add-hook mode 'eglot-ensure))))
 
 ;; Configure specific modes
