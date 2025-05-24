@@ -54,6 +54,7 @@
                    dracula-theme
                    sublime-themes
                    doom-themes
+                   ayu-theme
 
                    ;; Other appearance related packages
                    doom-modeline
@@ -66,13 +67,14 @@
   ;; (require 'ef-themes)
   ;; (require 'dracula-theme)
   ;; (require 'sublime-themes)
-  (require 'doom-themes)
+  ;; (require 'doom-themes)
   ;; [TODO] Setup modeline
   ;; (require 'doom-modeline)
   (require 'rainbow-delimiters)
   (require 'rainbow-mode))
 
-(load-theme 'doom-one t nil)
+(autoload 'ayu-dark "ayu-theme-autoloads")
+(load-theme 'ayu-dark t nil)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (autoload 'rainbow-mode "rainbow-mode")
