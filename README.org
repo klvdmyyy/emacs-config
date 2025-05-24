@@ -4,6 +4,8 @@
 
 [[./assets/screenshot1.png]]
 
+[[./assets/screenshot2.png]]
+
 Welcome to part of my not only development workflow.
 
 ~GNU Emacs~ is main part of my workflow
