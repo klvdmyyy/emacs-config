@@ -4,11 +4,10 @@
 ;;
 ;; Development module. Configuration for development.
 ;;
-;; Supported languages:
-;; - C
-;; - Go
-;; - C++
+;; Main languages:
+;; - C/C++
 ;; - Python
+;; - Go
 ;;
 ;;; Code:
 
@@ -89,7 +88,10 @@
       ;; Basic `pylsp' (`python3-lsp-server' or `python-language-server' in Fedora GNU/Linux)
       (pls (or (executable-find "basedbyright")
                (executable-find "pyright")
-               (executable-find "pylsp"))))
+               (executable-find "pylsp")))
+
+      ;; Language server for shell scripts (Bash only)
+      (bash-language-server (executable-find "bash-language-server")))
   ;; Configure C/C++
   (when clangd
     ;; [TODO] clangd already configured and this section of code should be in `with-eval-after-load'
@@ -111,9 +113,18 @@
   (when pls
     (dolist (mode '(python-mode-hook
                     python-ts-mode-hook))
+      (add-hook mode 'eglot-ensure)))
+
+  ;; Configure Bash
+  (when bash-language-server
+    (dolist (mode '(sh-mode-hook
+                    bash-mode-hook
+                    bash-ts-mode-hook))
       (add-hook mode 'eglot-ensure))))
 
 ;; Configure specific modes
+(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
+
 (autoload 'go-mode "go-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
