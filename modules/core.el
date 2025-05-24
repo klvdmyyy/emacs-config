@@ -8,6 +8,7 @@
 ;;(setq native-comp-async-report-warnings-errors 'silent)
 
 (recentf-mode 1)
+(which-key-mode 1)
 
 (setq default-input-method "russian-computer")
 
