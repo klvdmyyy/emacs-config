@@ -4,11 +4,18 @@
 ;;
 ;; Development module. Configuration for development.
 ;;
-;; Main languages:
+;; Main languages (supported):
 ;; - Bash
 ;; - C/C++
 ;; - Python
 ;; - Go
+;;
+;; Other interesting languages (unsupported):
+;; - Zig/Rust
+;; - Perl
+;; - Guile
+;; - Clojure
+;; - Common Lisp
 ;;
 ;;; Code:
 
