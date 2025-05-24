@@ -5,6 +5,7 @@
 ;; Development module. Configuration for development.
 ;;
 ;; Main languages:
+;; - Bash
 ;; - C/C++
 ;; - Python
 ;; - Go
