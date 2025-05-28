@@ -61,8 +61,29 @@ Smth like pipeline:
 (dolist (module modules-list)
   (load-user-module module))
 
-(let ((user-settings (concat user-init-dir "user-settings.el")))
-  (when (file-exists-p user-settings)
-    (load-file user-settings)))
+;; [TODO] Interactive generating when clone git repository and start configuration at first time
+(defconst user-settings-file (concat user-init-dir "user-settings.el"))
+(defconst user-settings-example (concat user-init-dir "user-settings.example.el"))
+
+(defun load-user-settings ()
+  "[TODO] Docstring"
+  (interactive)
+  (if (file-exists-p user-settings-file)
+      (load-file user-settings-file)
+    ;; [TODO] maybe `error' ?!
+    (message "User settings file doesn't exist")))
+
+(defun open-user-settings ()
+  "[TODO] Docstring"
+  (interactive)
+  (if (file-exists-p user-settings-file)
+      (find-file user-settings-file)
+    ;; [TODO] maybe `error' ?!
+    (message "User settings file doesn't exist")))
+
+(global-set-key (kbd "C-c u") 'open-user-settings)
+
+;; Load user settings after initialization
+(add-hook 'after-init-hook (lambda () (load-user-settings)))
 
 ;;; init.el ends here
