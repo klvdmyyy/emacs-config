@@ -4,7 +4,8 @@
 ;;
 ;;; Code:
 
-(set-default 'cursor-type '(bar . 2))
+(setq-default cursor-type 'hollow)
+;;(set-default 'cursor-type '(bar . 2))
 (blink-cursor-mode 0)
 
 (setq-default cursor-in-non-selected-windows nil)
