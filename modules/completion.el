@@ -58,6 +58,7 @@
   (add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
   (all-the-icons-completion-mode 1))
 
+;; [TODO] Remove `corfu-auto' and setup completion only when TAB key pressed (or smth else)
 (with-eval-after-load 'corfu
   (setq corfu-min-width 60)
   (setq corfu-cycle t)
