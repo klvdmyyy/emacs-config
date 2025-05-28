@@ -6,7 +6,8 @@
 ;;
 ;;; Code:
 
-(dolist (package '(telega))
+(dolist (package '(;; telega
+                   markdown-mode))
   (straight-use-package package))
 
 ;; [TODO] Move `org-mode-indent' to appearance maybe !?
@@ -32,6 +33,11 @@
 ;; (add-hook 'emacs-startup-hook (lambda ()
 ;;                                 (interactive)
 ;;                                 (telega nil)))
+
+;; [TODO] Setup markdown using `httpd' (emacs web server) and `impatient' with `markdown-mode':
+;; https://stackoverflow.com/questions/36183071/how-can-i-preview-markdown-in-emacs-in-real-time
+(autoload 'markdown-mode "markdown-mode-autoloads")
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (provide 'productivity)
 
