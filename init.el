@@ -65,13 +65,18 @@ Smth like pipeline:
 (defconst user-settings-file (concat user-init-dir "user-settings.el"))
 (defconst user-settings-example (concat user-init-dir "user-settings.example.el"))
 
+(defun create-user-settings-file ()
+  (dired-copy-file
+   user-settings-example
+   user-settings-file
+   nil))
+
 (defun load-user-settings ()
   "[TODO] Docstring"
   (interactive)
   (if (file-exists-p user-settings-file)
       (load-file user-settings-file)
-    ;; [TODO] maybe `error' ?!
-    (message "User settings file doesn't exist")))
+    (create-user-settings-file)))
 
 (defun open-user-settings ()
   "[TODO] Docstring"
