@@ -25,3 +25,7 @@ readme.el
 tramp
 
 *~
+
+# My specific things which not stored in repository (with example files)
+user-settings.el
+!user-settings.example.el

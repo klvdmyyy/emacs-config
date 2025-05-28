@@ -61,4 +61,8 @@ Smth like pipeline:
 (dolist (module modules-list)
   (load-user-module module))
 
+(let ((user-settings (concat user-init-dir "user-settings.el")))
+  (when (file-exists-p user-settings)
+    (load-file user-settings)))
+
 ;;; init.el ends here
