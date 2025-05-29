@@ -39,7 +39,9 @@
                                 ("terminfo/65" "terminfo/65/*")
                                 ("integration" "integration/*")
                                 (:exclude ".dir-locals.el" "*-tests.el")))
-                   go-mode))
+                   go-mode
+                   ;;docker
+                   dockerfile-mode))
   (straight-use-package package))
 
 (eval-when-compile
