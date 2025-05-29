@@ -56,3 +56,16 @@ TODO
 - [ ] [QSTN] Maybe remove =eat= terminal emulator ?!
 - [ ] [TODO] Docker support
 - [ ] [TODO] Kubernetes support
+
+* Usage of this configuration/distribution
+
+- Code editing
+  - Bash
+  - C/C++
+  - Python
+  - SQL
+- Documentation, Knowledge Base, Notes
+  - RST (reStructuredText)
+  - Markdown
+  - Org Mode
+  - HTML/CSS (emacs web-mode)

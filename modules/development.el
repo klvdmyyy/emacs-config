@@ -27,6 +27,7 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; [TODO] HTML/CSS support with `web-mode'
 (dolist (package '(magit
                    smartparens
                    (eat :type git
@@ -53,6 +54,9 @@
 
 (autoload 'smartparens-mode "smartparens-autoloads")
 (autoload 'smartparens-strict-mode "smartparens-autoloads")
+
+(dolist (hook '(web-mode-hook))
+  (add-hook hook (lambda () (smartparens-mode 0))))
 
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'prog-mode-hook 'smartparens-strict-mode)
@@ -135,11 +139,23 @@
       (add-hook mode 'eglot-ensure))))
 
 ;; Configure specific modes
-(add-to-list 'auto-mode-alist '("\\.sh\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.sql\\'" . sql-mode))
+(defconst specific-modes-autoloads
+  '((go-mode . "go-mode")))
 
-(autoload 'go-mode "go-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(defconst specific-modes
+  '(("\\.sh\\'" . sh-mode)
+    ("\\.sql\\'" . sql-mode)
+    ("\\.go\\'" . go-mode)
+    ("\\.rst\\'" . rst-mode)))
+
+(dolist (specific-mode-autoload specific-mode-autoloads)
+  (autoload
+    (car specific-mode-autoload)
+    (cdr specific-mode-autoload)
+    nil t))
+
+(dolist (specific-mode specific-modes)
+  (add-to-list 'auto-mode-alist specific-mode))
 
 (provide 'development)
 
