@@ -10,7 +10,6 @@
 ;; - Helm ?!?!?!
 ;;
 ;;; Code:
-
 (dolist (package '(all-the-icons
                    all-the-icons-completion
                    consult
@@ -64,8 +63,9 @@
   (setq corfu-cycle t)
   (setq corfu-quit-no-match t)
 
-  (setq corfu-auto t)
-  (setq corfu-auto-delay 0.1)
+  (setq corfu-auto nil)                 ; Remove auto-completion. Complete only with TAB key
+  (setq corfu-auto-delay 0.1)           ; Unnecessary. `corfu-auto' is disabled
+  (setq tab-always-indent 'complete)    ; Always complete when TAB is pressed
 
   ;; (setq corfu-doc-auto t)
   (setq corfu-popupinfo-auto t)
