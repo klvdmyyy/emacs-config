@@ -7,12 +7,13 @@
 ;; Main languages (supported):
 ;; - Bash
 ;; - C/C++
+;; - Zig (as C replacement)
 ;; - Python
 ;; - Go
 ;; - SQL
 ;;
 ;; Other interesting languages (unsupported):
-;; - Zig/Rust
+;; - Rust
 ;; - Perl
 ;; - Guile
 ;; - Clojure
@@ -40,8 +41,10 @@
                                 ("integration" "integration/*")
                                 (:exclude ".dir-locals.el" "*-tests.el")))
                    go-mode
+                   ;; [TODO] `docker.el'
                    ;;docker
-                   dockerfile-mode))
+                   dockerfile-mode
+                   zig-mode))
   (straight-use-package package))
 
 (eval-when-compile
@@ -109,6 +112,8 @@
                (executable-find "pyright")
                (executable-find "pylsp")))
 
+      (zls (executable-find "zls"))
+
       ;; Language server for shell scripts (Bash only)
       (bash-language-server (executable-find "bash-language-server")))
   ;; Configure C/C++
@@ -134,6 +139,10 @@
                     python-ts-mode-hook))
       (add-hook mode 'eglot-ensure)))
 
+  ;; Configure Zig
+  (when zls
+    (add-hook 'zig-mode 'eglot-ensure))
+
   ;; Configure Bash
   (when bash-language-server
     (dolist (mode '(sh-mode-hook
@@ -143,15 +152,17 @@
 
 ;; Configure specific modes
 (defconst specific-modes-autoloads
-  '((go-mode . "go-mode")))
+  '((go-mode . "go-mode")
+    (zig-mode . "zig-mode")))
 
 (defconst specific-modes
   '(("\\.sh\\'" . sh-mode)
     ("\\.sql\\'" . sql-mode)
     ("\\.go\\'" . go-mode)
-    ("\\.rst\\'" . rst-mode)))
+    ("\\.rst\\'" . rst-mode)
+    ("\\.zig\\'" . zig-mode)))
 
-(dolist (specific-mode-autoload specific-mode-autoloads)
+(dolist (specific-mode-autoload specific-modes-autoloads)
   (autoload
     (car specific-mode-autoload)
     (cdr specific-mode-autoload)
