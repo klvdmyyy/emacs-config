@@ -8,6 +8,7 @@
 ;; - Bash
 ;; - C/C++
 ;; - Zig (as C replacement)
+;; - NASM (assembler language)
 ;; - Python
 ;; - Go
 ;; - SQL
@@ -44,7 +45,8 @@
                    ;; [TODO] `docker.el'
                    ;;docker
                    dockerfile-mode
-                   zig-mode))
+                   zig-mode
+                   nasm-mode))
   (straight-use-package package))
 
 (eval-when-compile
@@ -153,14 +155,16 @@
 ;; Configure specific modes
 (defconst specific-modes-autoloads
   '((go-mode . "go-mode")
-    (zig-mode . "zig-mode")))
+    (zig-mode . "zig-mode")
+    (nasm-mode . "nasm-mode")))
 
 (defconst specific-modes
   '(("\\.sh\\'" . sh-mode)
     ("\\.sql\\'" . sql-mode)
     ("\\.go\\'" . go-mode)
     ("\\.rst\\'" . rst-mode)
-    ("\\.zig\\'" . zig-mode)))
+    ("\\.zig\\'" . zig-mode)
+    ("\\.nasm\\'" . nasm-mode)))
 
 (dolist (specific-mode-autoload specific-modes-autoloads)
   (autoload
