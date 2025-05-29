@@ -28,6 +28,7 @@
 (setq indent-line-function 'insert-tab)
 
 ;; [TODO] HTML/CSS support with `web-mode'
+;; [TODO] Snippets with `yasnippet'
 (dolist (package '(magit
                    smartparens
                    (eat :type git

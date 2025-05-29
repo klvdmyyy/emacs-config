@@ -56,6 +56,8 @@ TODO
 - [ ] [QSTN] Maybe remove =eat= terminal emulator ?!
 - [ ] [TODO] Docker support
 - [ ] [TODO] Kubernetes support
+- [ ] [TODO] Add snippets with yasnippet
+- [ ] [MAYBE] Setup flymake/flycheck ?!
 
 * Usage of this configuration/distribution
 
