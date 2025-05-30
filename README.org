@@ -14,6 +14,7 @@ Currently my main system is Fedora GNU/Linux distribution with GNOME
 
 * Keybindings
 
+- =C-c c= - Open config directory (=user-init-dir= variable) with =open-config=
 - =C-c p= - Open projects directory (=~/projects=) with =open-projects-directory=
 - =C-c o= - Open org directory (=~/org=) with =open-org-directory=
 - =C-c u= - Open user settings file with =open-user-settings= (see =user-settings.example.el= and =init.el=)
