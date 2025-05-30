@@ -28,9 +28,17 @@
   (interactive)
   (dired org-directory))
 
+(defun open-projects-directory ()
+  (interactive)
+  (dired "~/projects"))
+
 (global-set-key
  (kbd "C-c o")
  'open-org-directory)
+
+(global-set-key
+ (kbd "C-c p")
+ 'open-projects-directory)
 
 ;; [TODO] Fedora TDLib 1.8.0 less then required 1.8.44 (minimum required)
 ;; (autoload 'telega "telega")
