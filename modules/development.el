@@ -12,6 +12,8 @@
 ;; - Python
 ;; - Go
 ;; - SQL
+;; - Protobuf (for gRPC)
+;; - Graphviz Dot mode
 ;;
 ;; Other interesting languages (unsupported):
 ;; - Rust
@@ -32,6 +34,7 @@
 ;; [TODO] HTML/CSS support with `web-mode'
 ;; [TODO] Snippets with `yasnippet'
 (dolist (package '(magit
+                   git-modes
                    smartparens
                    (eat :type git
                         :host codeberg
@@ -42,9 +45,17 @@
                                 ("integration" "integration/*")
                                 (:exclude ".dir-locals.el" "*-tests.el")))
                    go-mode
+                   ;; [IMPORTANT]
+                   ;; Use Github mirror because default repository can't be cloned
+		           (protobuf-mode :type git
+				                  :host github
+				                  :repo "emacsmirror/protobuf-mode"
+				                  :files ("protobuf-mode.el"))
+                   yaml-mode
                    ;; [TODO] `docker.el'
                    ;;docker
                    dockerfile-mode
+                   graphviz-dot-mode
                    zig-mode
                    nasm-mode))
   (straight-use-package package))
@@ -69,6 +80,10 @@
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'prog-mode-hook 'smartparens-strict-mode)
 
+(dolist (hook '(yaml-mode-hook))
+  (add-hook hook 'smartparens-mode)
+  (add-hook hook 'smartparens-strict-mode))
+
 (dolist (mode '(emacs-lisp-mode
                 lisp-mode
                 common-lisp-mode
@@ -84,7 +99,8 @@
   (indent-according-to-mode))
 
 ;; [FIX] I think it's so stupid fix of indentation. I need smth else maybe...
-(dolist (mode '(go-mode))
+(dolist (mode '(go-mode
+                protobuf-mode))
  (dolist (char '("{" "(" "["))
   (sp-local-pair mode char nil :post-handlers '((indent-between-pair "RET")))))
 
@@ -156,7 +172,10 @@
 (defconst specific-modes-autoloads
   '((go-mode . "go-mode")
     (zig-mode . "zig-mode")
-    (nasm-mode . "nasm-mode")))
+    (nasm-mode . "nasm-mode")
+    (protobuf-mode . "protobuf-mode")
+    (yaml-mode . "yaml-mode")
+    (graphviz-dot-mode . "graphviz-dot-mode")))
 
 (defconst specific-modes
   '(("\\.sh\\'" . sh-mode)
@@ -164,7 +183,12 @@
     ("\\.go\\'" . go-mode)
     ("\\.rst\\'" . rst-mode)
     ("\\.zig\\'" . zig-mode)
-    ("\\.nasm\\'" . nasm-mode)))
+    ("\\.nasm\\'" . nasm-mode)
+    ("\\.proto\\'" . protobuf-mode)
+    ("\\.yaml\\'" . yaml-mode)
+    ("\\.yml\\'" . yaml-mode)
+    ;; ("\\.dot\\'" . graphviz-dot-mode)
+    ("\\.gv\\'" . graphviz-dot-mode)))
 
 (dolist (specific-mode-autoload specific-modes-autoloads)
   (autoload
