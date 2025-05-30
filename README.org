@@ -14,6 +14,7 @@ Currently my main system is Fedora GNU/Linux distribution with GNOME
 
 * Keybindings
 
+- =C-c o= - Open org directory (=~/org=) with =open-org-directory=
 - =C-c u= - Open user settings file with =open-user-settings= (see =user-settings.example.el= and =init.el=)
 - =C-x p f= - Find files in project with =project-find-file=
 - =s-B= - Switch buffer with =consult-buffer=

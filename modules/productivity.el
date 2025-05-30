@@ -16,11 +16,21 @@
                 visual-line-mode))
   (add-hook 'org-mode-hook mode))
 
+(setq org-directory "~/org")            ; Just default value
+
 (setq org-agenda-files
-      '("~/Projects/OrgFiles/Tasks.org"
-        "~/Projects/OrgFiles/Birthdays.org"
-        ;;"~/Projects/OrgFiles/Habits.org"
+      '("tasks.org"
+        "birthdays.org"
+        ;;"habits.org"
         ))
+
+(defun open-org-directory ()
+  (interactive)
+  (dired org-directory))
+
+(global-set-key
+ (kbd "C-c o")
+ 'open-org-directory)
 
 ;; [TODO] Fedora TDLib 1.8.0 less then required 1.8.44 (minimum required)
 ;; (autoload 'telega "telega")
