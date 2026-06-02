@@ -83,7 +83,8 @@ If you delete it this function returns `t' at next startup"
   (blink-cursor-mode 0)
 
   (when (first-startup-p)
-    (package-install-selected-packages :no-confirm)))
+    (package-install-selected-packages :no-confirm)
+    (package-vc-install-selected-packages)))
 
 (use-package editorconfig
   :ensure nil
