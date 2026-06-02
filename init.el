@@ -7,6 +7,32 @@
       (load-suffixes '(".el")))
   (load (expand-file-name "themes/gruber-darker-theme.el" user-emacs-directory)))
 
+;;; First Startup checking:
+
+(defcustom first-startup--lock-file
+  (expand-file-name ".first-startup-lock" user-emacs-directory)
+  "First startup lock file."
+  :group 'first-startup
+  :type 'file)
+
+(defun first-startup--lock ()
+  "Lock startup"
+  (require 'dired-aux)
+  (unless (file-exists-p first-startup--lock-file)
+    (dired-create-empty-file first-startup--lock-file)))
+
+(defun first-startup-p ()
+  "Return non-nil if user start Emacs at first time.
+
+Creates .first-startup-lock in `user-emacs-directory'.
+If you delete it this function returns `t' at next startup"
+  (if (file-exists-p first-startup--lock-file)
+      nil
+    (add-hook 'kill-emacs-hook #'first-startup--lock)
+    t))
+
+;;; Helper functions:
+
 ;; Helper function for fonts loading
 (defun load-face-attributes (name height)
   (let ((choosen-font name)
@@ -52,7 +78,10 @@
   :config
   (my/load-theme)
   (my/load-font)
-  (blink-cursor-mode 0))
+  (blink-cursor-mode 0)
+
+  (when (first-startup-p)
+    (package-install-selected-packages :no-confirm)))
 
 (use-package editorconfig
   :ensure nil
@@ -184,7 +213,7 @@
 
 (use-package vertico
   :ensure nil
-  :defer t
+  :defer (not (daemonp))
   :hook (emacs-startup . vertico-mode))
 
 (use-package marginalia
@@ -195,7 +224,7 @@
 
 (use-package consult
   :ensure nil
-  :defer t
+  :defer (not (daemonp))
   ;; For eshell configuration
   :commands (consult-history)
   :bind (("C-s" . consult-line)
@@ -219,6 +248,8 @@
   :ensure nil
   :defer t
   :bind (("C-x g" . magit-status)))
+
+;;; Major modes (Languages):
 
 (use-package cmake-mode
   :ensure nil
