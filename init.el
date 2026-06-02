@@ -35,11 +35,12 @@ If you delete it this function returns `t' at next startup"
 
 ;; Helper function for fonts loading
 (defun load-face-attributes (name height)
-  (let ((choosen-font name)
-        (font-height (or height 130)))
-    (set-face-attribute 'default nil :font choosen-font :height font-height)
-    (set-face-attribute 'fixed-pitch nil :font choosen-font :height font-height)
-    (set-face-attribute 'variable-pitch nil :font choosen-font :height font-height :weight 'regular)))
+  (when (find-font (font-spec :name name))
+    (let ((choosen-font name)
+          (font-height (or height 130)))
+      (set-face-attribute 'default nil :font choosen-font :height font-height)
+      (set-face-attribute 'fixed-pitch nil :font choosen-font :height font-height)
+      (set-face-attribute 'variable-pitch nil :font choosen-font :height font-height :weight 'regular))))
 
 ;; Load theme
 (defun my/load-theme ()
@@ -68,6 +69,7 @@ If you delete it this function returns `t' at next startup"
 (use-package emacs
   :ensure nil
   :custom
+  (ring-bell-function 'ignore)
   (make-backup-files nil)
   (custom-file (expand-file-name "custom.el" user-emacs-directory))
 
@@ -249,6 +251,11 @@ If you delete it this function returns `t' at next startup"
   :defer t
   :bind (("C-x g" . magit-status)))
 
+(use-package ace-window
+  :ensure nil
+  :defer t
+  :bind (("M-o" . ace-window)))
+
 ;;; Major modes (Languages):
 
 (use-package cmake-mode
@@ -260,6 +267,11 @@ If you delete it this function returns `t' at next startup"
   :ensure nil
   :defer t
   :mode ("\\.glsl\\'" "\\.frag\\'" "\\.vert\\'"))
+
+(use-package slang-mode
+  :ensure nil
+  :defer t
+  :mode ("\\.slang\\'"))
 
 (use-package yaml-mode
   :ensure nil

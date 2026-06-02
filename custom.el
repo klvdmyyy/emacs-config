@@ -5,9 +5,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(cmake-mode consult glsl-mode magit marginalia markdown-mode
-		multiple-cursors orderless rust-mode toml-mode
-		transient vertico yaml-mode))
+   '(ace-window cmake-mode consult glsl-mode magit marginalia
+		markdown-mode multiple-cursors orderless rust-mode
+		slang-mode toml-mode transient vertico yaml-mode))
+ '(package-vc-selected-packages
+   '((slang-mode :vc-backend Git :url
+		 "https://github.com/K1ngst0m/slang-mode")))
  '(safe-local-variable-values
    '((cmake-tab-width . 2) (cmake-tab-width . 4)
      (eval setq-local tags-file-name
