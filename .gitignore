@@ -1,0 +1,15 @@
+*
+!.gitignore
+
+# Main files
+!early-init.el
+!init.el
+!custom.el
+!README.org
+
+# Manually installed themes
+!themes/
+!themes/*
+
+# Multiple cursors
+!.mc-lists.el
