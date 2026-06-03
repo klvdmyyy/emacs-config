@@ -6,6 +6,7 @@
 	c-electric-brace
 	c-electric-colon
 	c-electric-delete-forward
+	c-electric-lt-gt
 	c-electric-paren
 	electric-pair-delete-pair
 	indent-for-tab-command
