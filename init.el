@@ -72,6 +72,7 @@ If you delete it this function returns `t' at next startup"
   (ring-bell-function 'ignore)
   (make-backup-files nil)
   (custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (tab-always-indent 'complete)
 
   :init
   (my/load-custom)
